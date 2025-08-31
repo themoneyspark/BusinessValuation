@@ -329,11 +329,11 @@ const BillingManagement = () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Customer</TableHead>
-                <TableHead>Plan & Amount</TableHead>
+                <TableHead>Plan & Billing Period</TableHead>
+                <TableHead>Amount & Payment</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Payment Method</TableHead>
+                <TableHead>Payment Method & Card</TableHead>
                 <TableHead>Transaction Date</TableHead>
-                <TableHead>Next Billing</TableHead>
                 <TableHead>Invoice</TableHead>
                 <TableHead className="w-12">Actions</TableHead>
               </TableRow>
