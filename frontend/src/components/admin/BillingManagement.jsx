@@ -64,6 +64,8 @@ const BillingManagement = () => {
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterPlan, setFilterPlan] = useState('all');
   const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [showCustomerBilling, setShowCustomerBilling] = useState(false);
 
   const filteredTransactions = mockBillingData.filter(transaction => {
     const matchesSearch = transaction.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
