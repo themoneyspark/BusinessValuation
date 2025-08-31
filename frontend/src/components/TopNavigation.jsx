@@ -9,7 +9,7 @@ const TopNavigation = ({ userData, onTierChange }) => {
         
         {/* Left Section - Logo Area */}
         <div className="flex items-center w-60">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center">
             <img 
               src="/kgob-logo.png"
               alt="Kohari Gonzalez Logo"
@@ -22,10 +22,6 @@ const TopNavigation = ({ userData, onTierChange }) => {
             />
             <div className="hidden w-12 h-12 bg-teal-500 rounded-lg items-center justify-center">
               <span className="text-white font-bold text-lg">KG</span>
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold text-navy-900">Kohari Gonzalez</h1>
-              <p className="text-sm text-teal-500">CPAs & Advisors</p>
             </div>
           </div>
         </div>
