@@ -14,9 +14,17 @@ const TopNavigation = ({ userData, onTierChange }) => {
         <div className="flex items-center w-60">
           <div className="flex items-center space-x-3">
             <img 
-              src={logoBase64}
+              src="/kgob-logo.png"
               alt="Kohari Gonzalez Logo"
-              className="h-12 object-contain"
+              className="h-12 w-auto object-contain"
+              onError={(e) => {
+                // Fallback to text if image fails to load
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            <div className="hidden w-12 h-12 bg-teal-500 rounded-lg items-center justify-center">
+              <span className="text-white font-bold text-lg">KG</span>
             />
             <div>
               <h1 className="text-lg font-semibold text-navy-900">Kohari Gonzalez</h1>
