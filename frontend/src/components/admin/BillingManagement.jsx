@@ -17,7 +17,12 @@ import {
   MoreHorizontal,
   Eye,
   Send,
-  Settings
+  Settings,
+  User,
+  Receipt,
+  CalendarDays,
+  Percent,
+  ArrowUpRight
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
