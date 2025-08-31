@@ -34,13 +34,14 @@ const Dashboard = ({ userTier, onTierChange }) => {
     }
   };
 
+  // Get current tier stats - this ensures fresh data on tier change
+  const currentStats = quickStats[userTier] || quickStats['Free'];
+
   const renderTierContent = () => {
-    const stats = quickStats[userTier];
-    
     return (
       <div className="space-y-6">
-        {/* Quick Stats */}
-        <QuickStats stats={stats} />
+        {/* Quick Stats - now uses currentStats which updates with tier */}
+        <QuickStats stats={currentStats} />
         
         {/* Dashboard Tabs */}
         <DashboardTabs activeTab={dashboardTab} onTabChange={setDashboardTab} />
