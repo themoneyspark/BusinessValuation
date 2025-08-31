@@ -1,0 +1,375 @@
+// Mock data for KGOB Admin Dashboard
+
+export const mockUsers = [
+  {
+    id: 1,
+    name: "Michael Johnson",
+    email: "michael.johnson@email.com",
+    role: "Subscriber",
+    tier: "Premium",
+    registrationDate: "2024-01-15",
+    lastLogin: "2024-12-30",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
+    reportsGenerated: 12,
+    totalSpent: 450.00,
+    location: "New York, NY"
+  },
+  {
+    id: 2,
+    name: "Sarah Thompson",
+    email: "sarah.thompson@business.com",
+    role: "Buyer",
+    tier: "Professional",
+    registrationDate: "2024-02-22",
+    lastLogin: "2024-12-29",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5bb?w=100",
+    reportsGenerated: 8,
+    totalSpent: 320.00,
+    location: "Los Angeles, CA"
+  },
+  {
+    id: 3,
+    name: "David Chen",
+    email: "david.chen@techcorp.com",
+    role: "Free",
+    tier: "Basic",
+    registrationDate: "2024-03-10",
+    lastLogin: "2024-12-28",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
+    reportsGenerated: 3,
+    totalSpent: 0.00,
+    location: "San Francisco, CA"
+  },
+  {
+    id: 4,
+    name: "Emma Rodriguez",
+    email: "emma.rodriguez@consulting.com",
+    role: "Subscriber",
+    tier: "Premium",
+    registrationDate: "2024-01-28",
+    lastLogin: "2024-12-30",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100",
+    reportsGenerated: 15,
+    totalSpent: 675.00,
+    location: "Miami, FL"
+  },
+  {
+    id: 5,
+    name: "James Wilson",
+    email: "james.wilson@finance.com",
+    role: "Buyer",
+    tier: "Professional",
+    registrationDate: "2024-04-05",
+    lastLogin: "2024-12-27",
+    status: "inactive",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
+    reportsGenerated: 6,
+    totalSpent: 180.00,
+    location: "Chicago, IL"
+  },
+  {
+    id: 6,
+    name: "Lisa Anderson",
+    email: "lisa.anderson@startup.io",
+    role: "Free",
+    tier: "Basic",
+    registrationDate: "2024-05-12",
+    lastLogin: "2024-12-30",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100",
+    reportsGenerated: 2,
+    totalSpent: 0.00,
+    location: "Austin, TX"
+  },
+  {
+    id: 7,
+    name: "Robert Taylor",
+    email: "robert.taylor@corporation.com",
+    role: "Subscriber",
+    tier: "Enterprise",
+    registrationDate: "2024-02-14",
+    lastLogin: "2024-12-29",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100",
+    reportsGenerated: 25,
+    totalSpent: 1250.00,
+    location: "Boston, MA"
+  },
+  {
+    id: 8,
+    name: "Maria Garcia",
+    email: "maria.garcia@agency.com",
+    role: "Buyer",
+    tier: "Professional",
+    registrationDate: "2024-03-20",
+    lastLogin: "2024-12-30",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100",
+    reportsGenerated: 9,
+    totalSpent: 405.00,
+    location: "Phoenix, AZ"
+  },
+  {
+    id: 9,
+    name: "Kevin Brown",
+    email: "kevin.brown@small-biz.com",
+    role: "Free",
+    tier: "Basic",
+    registrationDate: "2024-06-01",
+    lastLogin: "2024-12-26",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=100",
+    reportsGenerated: 1,
+    totalSpent: 0.00,
+    location: "Denver, CO"
+  },
+  {
+    id: 10,
+    name: "Jennifer Lee",
+    email: "jennifer.lee@consulting.net",
+    role: "Subscriber",
+    tier: "Premium",
+    registrationDate: "2024-01-08",
+    lastLogin: "2024-12-30",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
+    reportsGenerated: 18,
+    totalSpent: 810.00,
+    location: "Seattle, WA"
+  }
+];
+
+export const mockTickets = [
+  {
+    id: 1,
+    title: "Cannot access premium reports",
+    customer: "Michael Johnson",
+    customerEmail: "michael.johnson@email.com",
+    priority: "high",
+    status: "open",
+    category: "Technical",
+    assignedTo: "Support Team",
+    createdDate: "2024-12-30",
+    lastUpdate: "2024-12-30",
+    description: "User reports getting 404 error when trying to access premium business valuation reports after successful payment."
+  },
+  {
+    id: 2,
+    title: "Billing inquiry - double charge",
+    customer: "Sarah Thompson",
+    customerEmail: "sarah.thompson@business.com",
+    priority: "medium",
+    status: "in-progress",
+    category: "Billing",
+    assignedTo: "Jane Smith",
+    createdDate: "2024-12-29",
+    lastUpdate: "2024-12-30",
+    description: "Customer was charged twice for the same report generation. Requesting refund for duplicate charge."
+  },
+  {
+    id: 3,
+    title: "Feature request - Custom templates",
+    customer: "Emma Rodriguez",
+    customerEmail: "emma.rodriguez@consulting.com",
+    priority: "low",
+    status: "open",
+    category: "Feature Request",
+    assignedTo: "Product Team",
+    createdDate: "2024-12-28",
+    lastUpdate: "2024-12-29",
+    description: "Request to add custom report templates for consulting firms with specific formatting requirements."
+  },
+  {
+    id: 4,
+    title: "Login issues with 2FA",
+    customer: "Robert Taylor",
+    customerEmail: "robert.taylor@corporation.com",
+    priority: "medium",
+    status: "resolved",
+    category: "Technical",
+    assignedTo: "Tech Support",
+    createdDate: "2024-12-27",
+    lastUpdate: "2024-12-28",
+    description: "User unable to complete 2FA login process. Issue resolved by resetting authentication settings."
+  },
+  {
+    id: 5,
+    title: "API integration questions",
+    customer: "Maria Garcia",
+    customerEmail: "maria.garcia@agency.com",
+    priority: "low",
+    status: "open",
+    category: "Technical",
+    assignedTo: "Developer Support",
+    createdDate: "2024-12-26",
+    lastUpdate: "2024-12-27",
+    description: "Questions about integrating KGOB API with existing agency management software."
+  }
+];
+
+export const mockBillingData = [
+  {
+    id: 1,
+    customerName: "Michael Johnson",
+    customerEmail: "michael.johnson@email.com",
+    amount: 45.00,
+    plan: "Premium Monthly",
+    status: "paid",
+    paymentMethod: "Stripe",
+    transactionDate: "2024-12-30",
+    invoiceNumber: "INV-2024-001",
+    nextBilling: "2025-01-30"
+  },
+  {
+    id: 2,
+    customerName: "Sarah Thompson",
+    customerEmail: "sarah.thompson@business.com",
+    amount: 120.00,
+    plan: "Professional Quarterly",
+    status: "paid",
+    paymentMethod: "Stripe",
+    transactionDate: "2024-12-28",
+    invoiceNumber: "INV-2024-002",
+    nextBilling: "2025-03-28"
+  },
+  {
+    id: 3,
+    customerName: "Emma Rodriguez",
+    customerEmail: "emma.rodriguez@consulting.com",
+    amount: 450.00,
+    plan: "Premium Annual",
+    status: "paid",
+    paymentMethod: "Stripe",
+    transactionDate: "2024-12-25",
+    invoiceNumber: "INV-2024-003",
+    nextBilling: "2025-12-25"
+  },
+  {
+    id: 4,
+    customerName: "Robert Taylor",
+    customerEmail: "robert.taylor@corporation.com",
+    amount: 199.00,
+    plan: "Enterprise Monthly",
+    status: "failed",
+    paymentMethod: "Stripe",
+    transactionDate: "2024-12-29",
+    invoiceNumber: "INV-2024-004",
+    nextBilling: "2025-01-29"
+  },
+  {
+    id: 5,
+    customerName: "Jennifer Lee",
+    customerEmail: "jennifer.lee@consulting.net",
+    amount: 45.00,
+    plan: "Premium Monthly",
+    status: "pending",
+    paymentMethod: "Stripe",
+    transactionDate: "2024-12-30",
+    invoiceNumber: "INV-2024-005",
+    nextBilling: "2025-01-30"
+  }
+];
+
+export const mockCoupons = [
+  {
+    id: 1,
+    code: "WELCOME2024",
+    description: "New user welcome discount",
+    discountType: "percentage",
+    discountValue: 20,
+    usageLimit: 100,
+    usedCount: 67,
+    expiryDate: "2024-12-31",
+    status: "active",
+    createdDate: "2024-01-01"
+  },
+  {
+    id: 2,
+    code: "PREMIUM50",
+    description: "50% off first premium subscription",
+    discountType: "percentage",
+    discountValue: 50,
+    usageLimit: 50,
+    usedCount: 23,
+    expiryDate: "2025-03-31",
+    status: "active",
+    createdDate: "2024-11-01"
+  },
+  {
+    id: 3,
+    code: "STUDENT25",
+    description: "Student discount",
+    discountType: "percentage",
+    discountValue: 25,
+    usageLimit: 200,
+    usedCount: 145,
+    expiryDate: "2025-06-30",
+    status: "active",
+    createdDate: "2024-09-01"
+  },
+  {
+    id: 4,
+    code: "HOLIDAY2023",
+    description: "Holiday special offer",
+    discountType: "fixed",
+    discountValue: 25,
+    usageLimit: 75,
+    usedCount: 75,
+    expiryDate: "2024-01-15",
+    status: "expired",
+    createdDate: "2023-12-01"
+  }
+];
+
+export const mockMetrics = {
+  totalUsers: 1247,
+  monthlyRevenue: 23450,
+  reportsGenerated: 156,
+  openTickets: 23,
+  systemUptime: 99.8,
+  userGrowth: 12,
+  revenueGrowth: 8,
+  activeSubscriptions: 456,
+  freeUsers: 678,
+  premiumUsers: 569
+};
+
+export const mockTeamMembers = [
+  {
+    id: 1,
+    name: "Jane Smith",
+    email: "jane.smith@kgob.com",
+    role: "Support Manager",
+    department: "Customer Support",
+    ticketsResolved: 145,
+    avgResponseTime: "2.5 hours",
+    status: "active",
+    joinDate: "2023-06-15"
+  },
+  {
+    id: 2,
+    name: "Alex Johnson", 
+    email: "alex.johnson@kgob.com",
+    role: "Technical Support",
+    department: "Customer Support",
+    ticketsResolved: 89,
+    avgResponseTime: "3.2 hours",
+    status: "active",
+    joinDate: "2023-09-20"
+  },
+  {
+    id: 3,
+    name: "Emily Davis",
+    email: "emily.davis@kgob.com", 
+    role: "Billing Specialist",
+    department: "Finance",
+    ticketsResolved: 67,
+    avgResponseTime: "1.8 hours",
+    status: "active",
+    joinDate: "2024-02-10"
+  }
+];
