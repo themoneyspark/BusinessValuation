@@ -84,3 +84,28 @@ code {
     @apply bg-background text-foreground;
     }
 }
+
+/* Custom utility classes for the dashboard */
+@layer utilities {
+  .w-60 {
+    width: 15rem; /* 240px */
+  }
+  .w-70 {
+    width: 17.5rem; /* 280px */
+  }
+  .w-50 {
+    width: 12.5rem; /* 200px */
+  }
+  .h-18 {
+    height: 4.5rem; /* 72px */
+  }
+  .ml-70 {
+    margin-left: 17.5rem; /* 280px */
+  }
+  .pt-18 {
+    padding-top: 4.5rem; /* 72px */
+  }
+  .text-navy-900 {
+    color: #1e3a8a;
+  }
+}
