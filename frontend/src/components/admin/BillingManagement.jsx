@@ -559,6 +559,259 @@ const BillingManagement = () => {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Customer Billing History Modal */}
+      {showCustomerBilling && selectedCustomer && (
+        <Dialog open={showCustomerBilling} onOpenChange={setShowCustomerBilling}>
+          <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-[#20B2AA] rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <span>Complete Billing History - {selectedCustomer.customerName}</span>
+                  <p className="text-sm font-normal text-slate-600">{selectedCustomer.customerEmail}</p>
+                </div>
+              </DialogTitle>
+              <DialogDescription>
+                Comprehensive billing management and transaction history for this customer
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-6 p-4">
+              {/* Customer Billing Summary */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <DollarSign className="w-5 h-5 text-green-600" />
+                      <span className="text-2xl font-bold text-green-600">
+                        ${selectedCustomer.totalSpent.toFixed(2)}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-600 mt-1">Total Spent</p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <Receipt className="w-5 h-5 text-blue-600" />
+                      <span className="text-2xl font-bold text-blue-600">
+                        {selectedCustomer.billingHistory.length}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-600 mt-1">Total Transactions</p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <CalendarDays className="w-5 h-5 text-purple-600" />
+                      <span className="text-2xl font-bold text-purple-600">
+                        {selectedCustomer.billingHistory.filter(t => t.planType === 'subscription').length}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-600 mt-1">Subscriptions</p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <FileText className="w-5 h-5 text-orange-600" />
+                      <span className="text-2xl font-bold text-orange-600">
+                        {selectedCustomer.billingHistory.filter(t => t.planType === 'one-time').length}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-600 mt-1">One-time Purchases</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Payment Methods */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">Payment Methods</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {Array.from(new Set(selectedCustomer.billingHistory.map(t => t.cardLast4)))
+                      .map((cardLast4, idx) => {
+                        const cardInfo = selectedCustomer.billingHistory.find(t => t.cardLast4 === cardLast4);
+                        return (
+                          <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                            <div className="flex items-center space-x-3">
+                              <CreditCard className="w-5 h-5 text-slate-400" />
+                              <div>
+                                <p className="font-medium">{cardInfo.cardBrand} ****{cardLast4}</p>
+                                <p className="text-sm text-slate-500">Primary payment method</p>
+                              </div>
+                            </div>
+                            <Badge className="bg-green-100 text-green-800">Active</Badge>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Transaction History Grouped by Type */}
+              <div className="space-y-4">
+                {/* Subscriptions Group */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base flex items-center">
+                      <CalendarDays className="w-4 h-4 mr-2 text-purple-600" />
+                      Subscription History ({selectedCustomer.billingHistory.filter(t => t.planType === 'subscription').length})
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Subscription Plan</TableHead>
+                          <TableHead>Billing Period</TableHead>
+                          <TableHead>Amount</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead>Date</TableHead>
+                          <TableHead>Invoice</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {selectedCustomer.billingHistory
+                          .filter(t => t.planType === 'subscription')
+                          .map((transaction) => (
+                            <TableRow key={transaction.id} className="hover:bg-slate-50">
+                              <TableCell>
+                                <div>
+                                  <p className="font-medium">{transaction.plan}</p>
+                                  <p className="text-sm text-slate-500">{transaction.description}</p>
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="outline">{transaction.billingPeriod}</Badge>
+                              </TableCell>
+                              <TableCell>
+                                <div>
+                                  <p className="font-medium">${transaction.total.toFixed(2)}</p>
+                                  {transaction.discount > 0 && (
+                                    <p className="text-sm text-green-600">-${transaction.discount.toFixed(2)} discount</p>
+                                  )}
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <Badge className={getStatusBadgeColor(transaction.status)}>
+                                  {transaction.status}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>{new Date(transaction.transactionDate).toLocaleDateString()}</TableCell>
+                              <TableCell>
+                                <Button variant="ghost" size="sm" className="text-[#20B2AA]">
+                                  {transaction.invoiceNumber}
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+
+                {/* One-time Purchases Group */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base flex items-center">
+                      <Receipt className="w-4 h-4 mr-2 text-orange-600" />
+                      One-time Purchases ({selectedCustomer.billingHistory.filter(t => t.planType === 'one-time').length})
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Product/Service</TableHead>
+                          <TableHead>Description</TableHead>
+                          <TableHead>Amount</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead>Date</TableHead>
+                          <TableHead>Invoice</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {selectedCustomer.billingHistory
+                          .filter(t => t.planType === 'one-time')
+                          .map((transaction) => (
+                            <TableRow key={transaction.id} className="hover:bg-slate-50">
+                              <TableCell>
+                                <p className="font-medium">{transaction.plan}</p>
+                              </TableCell>
+                              <TableCell>
+                                <p className="text-sm text-slate-600">{transaction.description}</p>
+                              </TableCell>
+                              <TableCell>
+                                <div>
+                                  <p className="font-medium">${transaction.total.toFixed(2)}</p>
+                                  {transaction.discount > 0 && (
+                                    <p className="text-sm text-green-600">-${transaction.discount.toFixed(2)} discount</p>
+                                  )}
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <Badge className={getStatusBadgeColor(transaction.status)}>
+                                  {transaction.status}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>{new Date(transaction.transactionDate).toLocaleDateString()}</TableCell>
+                              <TableCell>
+                                <Button variant="ghost" size="sm" className="text-[#20B2AA]">
+                                  {transaction.invoiceNumber}
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Customer Actions */}
+              <div className="border-t pt-4">
+                <h4 className="font-medium text-slate-900 mb-3">Customer Management Actions</h4>
+                <div className="flex flex-wrap gap-2">
+                  <Button size="sm" variant="outline">
+                    <Mail className="w-4 h-4 mr-1" />
+                    Email Customer
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    <Send className="w-4 h-4 mr-1" />
+                    Send Invoice
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    <Percent className="w-4 h-4 mr-1" />
+                    Apply Discount
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    <RefreshCw className="w-4 h-4 mr-1" />
+                    Retry Failed Payment
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    <Download className="w-4 h-4 mr-1" />
+                    Export History
+                  </Button>
+                  <Button size="sm" variant="outline" className="text-red-600">
+                    <XCircle className="w-4 h-4 mr-1" />
+                    Cancel Subscriptions
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };
