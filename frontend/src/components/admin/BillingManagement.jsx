@@ -342,15 +342,53 @@ const BillingManagement = () => {
               {filteredTransactions.map((transaction) => (
                 <TableRow key={transaction.id} className="hover:bg-slate-50">
                   <TableCell>
-                    <div>
-                      <p className="font-medium text-slate-900">{transaction.customerName}</p>
-                      <p className="text-sm text-slate-500">{transaction.customerEmail}</p>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-[#20B2AA] rounded-full flex items-center justify-center">
+                        <User className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-slate-900">{transaction.customerName}</p>
+                        <p className="text-sm text-slate-500">{transaction.customerEmail}</p>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-xs text-[#20B2AA] hover:text-[#1a9d96] p-0 h-auto"
+                          onClick={() => openCustomerBilling(transaction)}
+                        >
+                          <ArrowUpRight className="w-3 h-3 mr-1" />
+                          View Billing History
+                        </Button>
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div>
-                      <p className="font-medium">${transaction.amount.toFixed(2)}</p>
-                      <p className="text-sm text-slate-500">{transaction.plan}</p>
+                      <p className="font-medium text-slate-900">{transaction.plan}</p>
+                      <p className="text-sm text-slate-500">{transaction.billingPeriod}</p>
+                      <Badge variant="outline" className="mt-1 text-xs">
+                        {transaction.planType}
+                      </Badge>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div>
+                      <p className="font-medium text-lg">${transaction.total.toFixed(2)}</p>
+                      <div className="text-sm text-slate-500 space-y-1">
+                        <div className="flex justify-between">
+                          <span>Subtotal:</span>
+                          <span>${transaction.amount.toFixed(2)}</span>
+                        </div>
+                        {transaction.discount > 0 && (
+                          <div className="flex justify-between text-green-600">
+                            <span>Discount:</span>
+                            <span>-${transaction.discount.toFixed(2)}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between">
+                          <span>Tax:</span>
+                          <span>${transaction.tax.toFixed(2)}</span>
+                        </div>
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -362,11 +400,17 @@ const BillingManagement = () => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center">
-                      <div className="w-6 h-4 bg-blue-600 rounded mr-2 flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">S</span>
+                    <div>
+                      <div className="flex items-center mb-1">
+                        <div className="w-6 h-4 bg-blue-600 rounded mr-2 flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">S</span>
+                        </div>
+                        <span className="text-sm font-medium">{transaction.paymentMethod}</span>
                       </div>
-                      <span className="text-sm">{transaction.paymentMethod}</span>
+                      <div className="flex items-center text-sm text-slate-600">
+                        <CreditCard className="w-3 h-3 mr-1" />
+                        <span>{transaction.cardBrand} ****{transaction.cardLast4}</span>
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -374,11 +418,11 @@ const BillingManagement = () => {
                       <Calendar className="w-4 h-4 mr-1 text-slate-400" />
                       {new Date(transaction.transactionDate).toLocaleDateString()}
                     </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-sm text-slate-600">
-                      {new Date(transaction.nextBilling).toLocaleDateString()}
-                    </div>
+                    {transaction.nextBilling && (
+                      <div className="text-xs text-slate-500 mt-1">
+                        Next: {new Date(transaction.nextBilling).toLocaleDateString()}
+                      </div>
+                    )}
                   </TableCell>
                   <TableCell>
                     <Button variant="ghost" size="sm" className="text-[#20B2AA] hover:text-[#1a9d96]">
