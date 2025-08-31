@@ -35,8 +35,8 @@ const QuickStats = ({ stats }) => {
 
   return (
     <div className="mb-8">
-      {/* Gradient Background Container */}
-      <div className="bg-gradient-to-r from-blue-500 via-blue-400 to-teal-400 rounded-2xl p-8 shadow-xl">
+      {/* Darkened Gradient Background Container */}
+      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-teal-600 rounded-2xl p-8 shadow-xl">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold text-white">Business Metrics Overview</h2>
           <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
