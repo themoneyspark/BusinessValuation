@@ -3,8 +3,6 @@ import { Bell, Building, ChevronDown, User } from 'lucide-react';
 import { Button } from './ui/button';
 
 const TopNavigation = ({ userData, onTierChange }) => {
-
-
   return (
     <nav className="fixed top-0 left-0 right-0 h-18 bg-white border-b border-gray-200 z-50">
       <div className="flex items-center justify-between h-full px-6">
