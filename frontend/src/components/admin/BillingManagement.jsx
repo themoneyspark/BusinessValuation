@@ -76,6 +76,26 @@ const BillingManagement = () => {
     return matchesSearch && matchesStatus && matchesPlan;
   });
 
+  const getCustomerBillingHistory = (customerId) => {
+    return mockBillingData.filter(transaction => transaction.customerId === customerId)
+      .sort((a, b) => new Date(b.transactionDate) - new Date(a.transactionDate));
+  };
+
+  const getCustomerTotalSpent = (customerId) => {
+    return mockBillingData
+      .filter(transaction => transaction.customerId === customerId && transaction.status === 'paid')
+      .reduce((total, transaction) => total + transaction.total, 0);
+  };
+
+  const openCustomerBilling = (transaction) => {
+    setSelectedCustomer({
+      ...transaction,
+      billingHistory: getCustomerBillingHistory(transaction.customerId),
+      totalSpent: getCustomerTotalSpent(transaction.customerId)
+    });
+    setShowCustomerBilling(true);
+  };
+
   const getStatusIcon = (status) => {
     switch (status) {
       case 'paid': return <CheckCircle className="w-4 h-4 text-green-600" />;
