@@ -42,7 +42,7 @@ const TopNavigation = ({ userData, onTierChange }) => {
           <select 
             value={userData.tier}
             onChange={(e) => onTierChange(e.target.value)}
-            className="text-xs px-2 py-1 border rounded bg-teal-50 border-teal-200"
+            className="text-xs px-2 py-1 border rounded bg-teal-50 border-teal-200 min-w-[100px]"
           >
             <option value="Free">Free Tier</option>
             <option value="Buyer">Buyer Tier</option>
