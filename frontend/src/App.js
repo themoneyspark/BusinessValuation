@@ -1,51 +1,41 @@
-import { useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import { BrowserRouter } from "react-router-dom";
+import TopNavigation from "./components/TopNavigation";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
+import { Toaster } from "./components/ui/toaster";
+import { userData } from "./data/mock";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(userData);
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const handleTierChange = (newTier) => {
+    setCurrentUser(prev => ({ ...prev, tier: newTier }));
+  };
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+  };
+
   return (
-    <div className="App">
+    <div className="App bg-gray-50 min-h-screen">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
+        <TopNavigation 
+          userData={currentUser} 
+          onTierChange={handleTierChange}
+        />
+        <Sidebar 
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
+          userTier={currentUser.tier}
+        />
+        <Dashboard 
+          userTier={currentUser.tier}
+          onTierChange={handleTierChange}
+        />
+        <Toaster />
       </BrowserRouter>
     </div>
   );
