@@ -247,6 +247,30 @@ const ProfileManagement = () => {
 
   return (
     <div className="space-y-6">
+      {/* Two Factor Auth Modal */}
+      {showTwoFactorSetup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-4 border-b flex items-center justify-between">
+              <h2 className="text-lg font-semibold">Two-Factor Authentication</h2>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setShowTwoFactorSetup(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-4">
+              <TwoFactorAuth 
+                isEnabled={twoFactorEnabled}
+                onClose={() => setShowTwoFactorSetup(false)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -283,14 +307,19 @@ const ProfileManagement = () => {
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative">
                   <Avatar className="w-24 h-24">
-                    <AvatarFallback className="bg-[#20B2AA] text-white text-2xl">
-                      SG
-                    </AvatarFallback>
+                    {profileImagePreview ? (
+                      <AvatarImage src={profileImagePreview} alt="Profile" />
+                    ) : (
+                      <AvatarFallback className="bg-[#20B2AA] text-white text-2xl">
+                        SG
+                      </AvatarFallback>
+                    )}
                   </Avatar>
                   {editing && (
                     <Button 
                       size="sm" 
                       className="absolute bottom-0 right-0 rounded-full w-8 h-8 p-0 bg-[#20B2AA] hover:bg-[#1a9d96]"
+                      onClick={openFileDialog}
                     >
                       <Camera className="w-4 h-4" />
                     </Button>
@@ -304,14 +333,73 @@ const ProfileManagement = () => {
               </div>
 
               {editing && (
-                <div className="space-y-2">
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Camera className="w-4 h-4 mr-2" />
-                    Upload New Photo
-                  </Button>
-                  <p className="text-xs text-slate-500 text-center">
-                    JPG, PNG or GIF. Max size 2MB.
-                  </p>
+                <div className="space-y-4">
+                  {/* File Upload Area */}
+                  <div
+                    className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                      dragActive 
+                        ? 'border-[#20B2AA] bg-teal-50' 
+                        : 'border-slate-300 hover:border-slate-400'
+                    }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  >
+                    <Upload className="w-8 h-8 mx-auto mb-2 text-slate-400" />
+                    <p className="text-sm font-medium text-slate-900 mb-1">
+                      Drop an image here, or click to browse
+                    </p>
+                    <p className="text-xs text-slate-500">JPG, PNG or GIF. Max size 2MB.</p>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="mt-3"
+                      onClick={openFileDialog}
+                      disabled={isUploading}
+                    >
+                      <Camera className="w-4 h-4 mr-2" />
+                      {isUploading ? 'Uploading...' : 'Choose File'}
+                    </Button>
+                  </div>
+
+                  {/* Upload Progress */}
+                  {isUploading && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span>Uploading...</span>
+                        <span>{uploadProgress}%</span>
+                      </div>
+                      <div className="w-full bg-slate-200 rounded-full h-2">
+                        <div 
+                          className="bg-[#20B2AA] h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${uploadProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Remove Image Button */}
+                  {profileImagePreview && !isUploading && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full text-red-600 border-red-300 hover:bg-red-50"
+                      onClick={removeImage}
+                    >
+                      <X className="w-4 h-4 mr-2" />
+                      Remove Photo
+                    </Button>
+                  )}
+
+                  {/* Hidden file input */}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png,image/gif"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
                 </div>
               )}
             </CardContent>
