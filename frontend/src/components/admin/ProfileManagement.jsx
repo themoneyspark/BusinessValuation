@@ -160,7 +160,6 @@ const ProfileManagement = () => {
     setUploadProgress(0);
     
     try {
-      // Simulate chunked upload with progress
       const chunkSize = 64 * 1024; // 64KB chunks
       const totalChunks = Math.ceil(file.size / chunkSize);
       
@@ -169,33 +168,41 @@ const ProfileManagement = () => {
         const end = Math.min(start + chunkSize, file.size);
         const chunk = file.slice(start, end);
         
-        // Simulate API call with FormData
         const formData = new FormData();
         formData.append('chunk', chunk);
-        formData.append('chunkIndex', i);
-        formData.append('totalChunks', totalChunks);
-        formData.append('fileName', file.name);
+        formData.append('chunk_index', i.toString());
+        formData.append('total_chunks', totalChunks.toString());
+        formData.append('filename', file.name);
+        formData.append('user_id', 'admin');
         
-        // Mock upload progress
-        await new Promise(resolve => setTimeout(resolve, 100));
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/upload-chunk`, {
+          method: 'POST',
+          body: formData,
+        });
         
+        if (!response.ok) {
+          throw new Error(`Upload failed: ${response.statusText}`);
+        }
+        
+        const result = await response.json();
         const progress = Math.round(((i + 1) / totalChunks) * 100);
         setUploadProgress(progress);
+        
+        // If this was the final chunk, set the uploaded image preview
+        if (result.uploaded && result.file_id) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setProfileImagePreview(reader.result);
+            setProfileImage(file);
+          };
+          reader.readAsDataURL(file);
+        }
       }
       
-      // Set the uploaded image preview
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImagePreview(reader.result);
-        setProfileImage(file);
-        toast({
-          title: "Upload Successful",
-          description: "Profile picture uploaded successfully.",
-        });
-        setIsUploading(false);
-        setUploadProgress(0);
-      };
-      reader.readAsDataURL(file);
+      toast({
+        title: "Upload Successful",
+        description: "Profile picture uploaded successfully.",
+      });
       
     } catch (error) {
       console.error('Upload error:', error);
@@ -204,6 +211,7 @@ const ProfileManagement = () => {
         description: "Failed to upload profile picture. Please try again.",
         variant: "destructive",
       });
+    } finally {
       setIsUploading(false);
       setUploadProgress(0);
     }
