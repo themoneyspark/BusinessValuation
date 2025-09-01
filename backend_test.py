@@ -79,6 +79,15 @@ class ProfilePictureAPITester:
         total_size = len(file_data)
         total_chunks = (total_size + chunk_size - 1) // chunk_size
         
+        # Determine content type from filename
+        content_type = 'application/octet-stream'
+        if filename.lower().endswith(('.jpg', '.jpeg')):
+            content_type = 'image/jpeg'
+        elif filename.lower().endswith('.png'):
+            content_type = 'image/png'
+        elif filename.lower().endswith('.gif'):
+            content_type = 'image/gif'
+        
         print(f"Uploading {filename} in {total_chunks} chunks of {chunk_size} bytes each")
         
         for chunk_index in range(total_chunks):
@@ -87,7 +96,7 @@ class ProfilePictureAPITester:
             chunk_data = file_data[start:end]
             
             files = {
-                'chunk': (f'chunk_{chunk_index}', chunk_data, 'application/octet-stream')
+                'chunk': (f'chunk_{chunk_index}', chunk_data, content_type)
             }
             data = {
                 'chunk_index': chunk_index,
