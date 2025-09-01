@@ -142,6 +142,12 @@ const AdminDashboard = () => {
         return <TeamManagement />;
       case 'system':
         return <SystemHealth />;
+      case 'reports':
+        return <ReportManagement />;
+      case 'roles':
+        return <RoleManagement />;
+      case 'ai':
+        return <AIManagement />;
       default:
         return <DashboardOverview quickMetrics={quickMetrics} />;
     }
