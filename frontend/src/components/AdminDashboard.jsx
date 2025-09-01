@@ -269,7 +269,7 @@ const AdminDashboard = () => {
               <DropdownMenuContent align="end" className="w-56">
                 <div className="px-3 py-2 border-b">
                   <p className="font-medium">Sara Gonzalez</p>
-                  <p className="text-sm text-slate-500">sara.gonzalez@koharigonzalez.com</p>
+                  <p className="text-sm text-slate-500">Sara.Gonzalez@kgob.cpa</p>
                   <p className="text-xs text-slate-400">Super Administrator</p>
                 </div>
                 <DropdownMenuItem onClick={() => setSelectedSection('profile')}>
