@@ -174,7 +174,7 @@ const AdminDashboard = () => {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-[#20B2AA] rounded-lg flex items-center justify-center">
                 <img 
-                  src="https://customer-assets.emergentagent.com/job_ade93c71-5b26-473c-9a63-fa3def684fd0/artifacts/fu5a2wt2_Screen%20Shot%202025-08-31%20at%209.55.17%20AM.png" 
+                  src="https://customer-assets.emergentagent.com/job_valuation-admin/artifacts/v9sv37me_Screen%20Shot%202025-09-01%20at%2012.39.26%20PM.png" 
                   alt="KG Logo" 
                   className="w-8 h-8 object-contain"
                 />
