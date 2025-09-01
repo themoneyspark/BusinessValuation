@@ -208,19 +208,53 @@ const AdminDashboard = () => {
               </Badge>
             </Button>
 
-            {/* Admin Profile */}
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 bg-[#20B2AA] rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-medium">SG</span>
-              </div>
-              <div className="hidden md:block">
-                <p className="text-white text-sm font-medium">Sara Gonzalez</p>
-                <p className="text-slate-400 text-xs">Super Admin</p>
-              </div>
-              <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
-                <Settings className="w-4 h-4" />
-              </Button>
-            </div>
+            {/* Admin Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="flex items-center space-x-3 cursor-pointer hover:bg-slate-800 px-2 py-1 rounded-lg transition-colors">
+                  <div className="w-9 h-9 bg-[#20B2AA] rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">SG</span>
+                  </div>
+                  <div className="hidden md:block">
+                    <p className="text-white text-sm font-medium">Sara Gonzalez</p>
+                    <p className="text-slate-400 text-xs">Super Admin</p>
+                  </div>
+                  <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-3 py-2 border-b">
+                  <p className="font-medium">Sara Gonzalez</p>
+                  <p className="text-sm text-slate-500">sara.gonzalez@koharigonzalez.com</p>
+                  <p className="text-xs text-slate-400">Super Administrator</p>
+                </div>
+                <DropdownMenuItem onClick={() => setSelectedSection('profile')}>
+                  <User className="w-4 h-4 mr-2" />
+                  My Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setSelectedSection('security')}>
+                  <Shield className="w-4 h-4 mr-2" />
+                  Change Password
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setSelectedSection('preferences')}>
+                  <Settings className="w-4 h-4 mr-2" />
+                  Preferences
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setSelectedSection('activity')}>
+                  <Activity className="w-4 h-4 mr-2" />
+                  Activity Log
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={handleLogout}
+                  className="text-red-600 focus:text-red-600"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
