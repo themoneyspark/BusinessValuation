@@ -32,7 +32,7 @@ const ProfileManagement = () => {
   const [profileImagePreview, setProfileImagePreview] = useState(null);
   const [profileData, setProfileData] = useState({
     name: 'Sara Gonzalez',
-    email: 'sara.gonzalez@koharigonzalez.com',
+    email: 'Sara.Gonzalez@kgob.cpa',
     phone: '+1 (555) 123-4567',
     title: 'Super Administrator',
     department: 'Administration',
