@@ -26,6 +26,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Input } from './ui/input';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from './ui/dropdown-menu';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '../hooks/use-toast';
 import { mockMetrics } from '../mockData';
 
 // Import section components
