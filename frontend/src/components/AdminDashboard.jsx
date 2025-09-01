@@ -50,6 +50,32 @@ import AIManagement from './admin/AIManagement';
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out of the admin portal.",
+    });
+    setTimeout(() => {
+      navigate('/admin-login');
+    }, 1000);
+  };
+
+  const setSelectedSection = (section) => {
+    if (section === 'profile') {
+      setActiveSection('profile');
+    } else if (section === 'security') {
+      setActiveSection('password-change');
+    } else if (section === 'preferences') {
+      setActiveSection('preferences');
+    } else if (section === 'activity') {
+      setActiveSection('activity-log');
+    } else {
+      setActiveSection(section);
+    }
+  };
 
   const navigation = [
     {
