@@ -54,6 +54,65 @@ const ProfileManagement = () => {
   });
   const { toast } = useToast();
 
+  // Recent activity data (last 5 activities)
+  const recentActivities = [
+    {
+      id: 1,
+      action: 'Profile Login',
+      timestamp: '2024-12-31 09:30:15',
+      description: 'Successful admin login',
+      type: 'login',
+      ipAddress: '192.168.1.100',
+      location: 'Miami, FL'
+    },
+    {
+      id: 2,
+      action: 'Settings Updated',
+      timestamp: '2024-12-31 09:25:43',
+      description: 'Updated notification preferences',
+      type: 'settings',
+      ipAddress: '192.168.1.100',
+      location: 'Miami, FL'
+    },
+    {
+      id: 3,  
+      action: 'Password Changed',
+      timestamp: '2024-12-30 16:45:22',
+      description: 'Successfully changed account password',
+      type: 'security',
+      ipAddress: '192.168.1.100',
+      location: 'Miami, FL'
+    },
+    {
+      id: 4,
+      action: 'Report Uploaded',
+      timestamp: '2024-12-30 14:30:11',
+      description: 'Uploaded ABC_Corp_Business_Scorecard_Dec2024.pdf',
+      type: 'content',
+      ipAddress: '192.168.1.100',
+      location: 'Miami, FL'
+    },
+    {
+      id: 5,
+      action: '2FA Enabled',
+      timestamp: '2024-12-29 11:20:33',
+      description: 'Enabled two-factor authentication',
+      type: 'security',
+      ipAddress: '192.168.1.100',
+      location: 'Miami, FL'
+    }
+  ];
+
+  const getActivityIcon = (type) => {
+    switch (type) {
+      case 'login': return <Activity className="w-4 h-4 text-green-600" />;
+      case 'security': return <Shield className="w-4 h-4 text-red-600" />;
+      case 'settings': return <Settings className="w-4 h-4 text-blue-600" />;
+      case 'content': return <Upload className="w-4 h-4 text-purple-600" />;
+      default: return <Clock className="w-4 h-4 text-slate-600" />;
+    }
+  };
+
   const handleSave = () => {
     toast({
       title: "Profile Updated",
