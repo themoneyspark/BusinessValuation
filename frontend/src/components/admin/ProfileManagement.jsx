@@ -54,7 +54,26 @@ const ProfileManagement = () => {
 
   const handleCancel = () => {
     setEditing(false);
+    setProfileImagePreview(null);
+    setProfileImage(null);
     // Reset form data if needed
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setProfileImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setProfileImage(null);
+    setProfileImagePreview(null);
   };
 
   return (
