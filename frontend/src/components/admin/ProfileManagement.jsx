@@ -291,9 +291,28 @@ const ProfileManagement = () => {
     loadProfilePicture();
   }, []);
 
-  const removeImage = () => {
-    setProfileImage(null);
-    setProfileImagePreview(null);
+  const removeImage = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/picture/admin`, {
+        method: 'DELETE',
+      });
+      
+      if (response.ok) {
+        setProfileImage(null);
+        setProfileImagePreview(null);
+        toast({
+          title: "Profile Picture Removed",
+          description: "Your profile picture has been removed successfully.",
+        });
+      }
+    } catch (error) {
+      console.error('Remove error:', error);
+      toast({
+        title: "Remove Failed",
+        description: "Failed to remove profile picture. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
