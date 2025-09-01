@@ -20,10 +20,10 @@ const AdminLogin = () => {
 
     // Mock login validation
     setTimeout(() => {
-      if (credentials.email === 'admin@koharigonzalez.com' && credentials.password === 'admin123') {
+      if (credentials.email === 'Sara' && credentials.password === 'Sara@1025') {
         toast({
           title: "Login Successful",
-          description: "Welcome to KGOB Admin Portal",
+          description: "Welcome to KGOB Admin Portal, Sara!",
         });
         navigate('/admin');
       } else {
