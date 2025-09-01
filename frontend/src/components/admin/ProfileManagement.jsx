@@ -248,6 +248,49 @@ const ProfileManagement = () => {
     fileInputRef.current?.click();
   };
 
+  const removeImage = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/picture/admin`, {
+        method: 'DELETE',
+      });
+      
+      if (response.ok) {
+        setProfileImage(null);
+        setProfileImagePreview(null);
+        toast({
+          title: "Profile Picture Removed",
+          description: "Your profile picture has been removed successfully.",
+        });
+      }
+    } catch (error) {
+      console.error('Remove error:', error);
+      toast({
+        title: "Remove Failed",
+        description: "Failed to remove profile picture. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Load existing profile picture on component mount
+  React.useEffect(() => {
+    const loadProfilePicture = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/picture/admin`);
+        if (response.ok) {
+          const blob = await response.blob();
+          const imageUrl = URL.createObjectURL(blob);
+          setProfileImagePreview(imageUrl);
+        }
+      } catch (error) {
+        // No existing profile picture, which is fine
+        console.log('No existing profile picture found');
+      }
+    };
+    
+    loadProfilePicture();
+  }, []);
+
   const removeImage = () => {
     setProfileImage(null);
     setProfileImagePreview(null);
