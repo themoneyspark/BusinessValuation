@@ -156,115 +156,73 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Fancy Admin Top Bar */}
-      <header className="fixed top-0 w-full h-20 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-600 shadow-xl z-50">
+      {/* Clean Professional Admin Header */}
+      <header className="fixed top-0 w-full h-16 bg-slate-900 border-b border-slate-700 shadow-lg z-50">
         <div className="flex items-center justify-between h-full px-6">
-          {/* Left Section - Enhanced Logo & Branding */}
-          <div className="flex items-center space-x-6 w-80">
+          {/* Left Section - Logo & Branding */}
+          <div className="flex items-center space-x-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-white hover:bg-slate-700/50 md:hidden rounded-lg transition-all duration-200"
+              className="text-white hover:bg-slate-700 md:hidden"
             >
-              {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </Button>
             
-            {/* Enhanced Logo Section */}
-            <div className="flex items-center space-x-4 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-600/50">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#20B2AA] to-[#1a9d96] rounded-lg flex items-center justify-center shadow-lg">
-                  <img 
-                    src="https://customer-assets.emergentagent.com/job_ade93c71-5b26-473c-9a63-fa3def684fd0/artifacts/fu5a2wt2_Screen%20Shot%202025-08-31%20at%209.55.17%20AM.png" 
-                    alt="KG Logo" 
-                    className="w-10 h-10 object-contain filter brightness-110"
-                  />
-                </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-slate-800 animate-pulse"></div>
-              </div>
-              <div className="flex flex-col">
-                <h1 className="text-white font-bold text-xl tracking-wide bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
-                  Admin Portal
-                </h1>
-                <div className="flex items-center space-x-2">
-                  <Badge className="bg-gradient-to-r from-green-500 to-green-400 text-white text-xs font-medium px-2 py-1 shadow-sm">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full mr-1.5 animate-pulse"></div>
-                    PRODUCTION
-                  </Badge>
-                  <span className="text-slate-400 text-xs">KohariGonzalez</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Center Section - Enhanced System Status */}
-          <div className="hidden lg:flex items-center space-x-8 bg-slate-800/30 px-6 py-3 rounded-xl border border-slate-600/30">
+            {/* Logo Section */}
             <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-20"></div>
+              <div className="w-10 h-10 bg-[#20B2AA] rounded-lg flex items-center justify-center">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_ade93c71-5b26-473c-9a63-fa3def684fd0/artifacts/fu5a2wt2_Screen%20Shot%202025-08-31%20at%209.55.17%20AM.png" 
+                  alt="KG Logo" 
+                  className="w-8 h-8 object-contain"
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="text-white text-sm font-medium">System Online</span>
-                <span className="text-slate-400 text-xs">All services operational</span>
+              <div>
+                <h1 className="text-white font-semibold text-lg">Admin Portal</h1>
+                <p className="text-slate-400 text-xs">KohariGonzalez CPAs</p>
               </div>
-            </div>
-            <div className="w-px h-8 bg-slate-600"></div>
-            <div className="flex flex-col items-center">
-              <span className="text-[#20B2AA] text-lg font-bold">{mockMetrics.totalUsers.toLocaleString()}</span>
-              <span className="text-slate-400 text-xs">Active Users</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-[#20B2AA] text-lg font-bold">99.8%</span>
-              <span className="text-slate-400 text-xs">Uptime</span>
-            </div>
-            <div className="flex items-center space-x-2 text-slate-300">
-              <Clock className="w-4 h-4" />
-              <span className="text-xs">Updated 2min ago</span>
             </div>
           </div>
 
-          {/* Right Section - Enhanced Admin Profile */}
+          {/* Center Section - System Status */}
+          <div className="hidden lg:flex items-center space-x-6 text-sm">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <span className="text-slate-300">System Online</span>
+            </div>
+            <div className="text-slate-300">{mockMetrics.totalUsers.toLocaleString()} Active Users</div>
+            <Badge className="bg-green-100 text-green-800 text-xs">
+              PRODUCTION
+            </Badge>
+          </div>
+
+          {/* Right Section - Admin Profile */}
           <div className="flex items-center space-x-4">
             {/* Notifications */}
-            <div className="relative">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="text-white hover:bg-slate-700/50 relative p-2 rounded-xl transition-all duration-200 hover:scale-105"
-              >
-                <Bell className="w-5 h-5" />
-                <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-red-400 text-white text-xs px-1.5 py-0.5 min-w-5 h-5 rounded-full shadow-lg animate-bounce">
-                  3
-                </Badge>
-              </Button>
-            </div>
+            <Button variant="ghost" size="sm" className="text-white hover:bg-slate-700 relative">
+              <Bell className="w-4 h-4" />
+              <Badge className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 min-w-5 h-5">
+                3
+              </Badge>
+            </Button>
 
             {/* Admin Profile */}
-            <div className="flex items-center space-x-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-600/50 hover:bg-slate-700/50 transition-all duration-200 cursor-pointer">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#20B2AA] to-[#1a9d96] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white text-sm font-bold">SA</span>
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-slate-800"></div>
+            <div className="flex items-center space-x-3">
+              <div className="w-9 h-9 bg-[#20B2AA] rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-medium">SG</span>
               </div>
               <div className="hidden md:block">
-                <p className="text-white text-sm font-semibold">Sara Admin</p>
-                <div className="flex items-center space-x-2">
-                  <p className="text-slate-400 text-xs">Super Administrator</p>
-                  <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
-                  <p className="text-[#20B2AA] text-xs font-medium">Online</p>
-                </div>
+                <p className="text-white text-sm font-medium">Sara Gonzalez</p>
+                <p className="text-slate-400 text-xs">Super Admin</p>
               </div>
-              <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white p-1">
+              <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
                 <Settings className="w-4 h-4" />
               </Button>
             </div>
           </div>
         </div>
-
-        {/* Subtle bottom glow */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#20B2AA]/50 to-transparent"></div>
       </header>
 
       <div className="flex pt-20">
