@@ -31,6 +31,9 @@ import SupportTickets from './admin/SupportTickets';
 import CouponManagement from './admin/CouponManagement';
 import TeamManagement from './admin/TeamManagement';
 import SystemHealth from './admin/SystemHealth';
+import ReportManagement from './admin/ReportManagement';
+import RoleManagement from './admin/RoleManagement';
+import AIManagement from './admin/AIManagement';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
