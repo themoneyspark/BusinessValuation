@@ -267,7 +267,7 @@ const AdminDashboard = () => {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#20B2AA]/50 to-transparent"></div>
       </header>
 
-      <div className="flex pt-16">
+      <div className="flex pt-20">
         {/* Admin Sidebar */}
         <aside className={`fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white border-r border-slate-200 overflow-y-auto transition-transform duration-300 z-40 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
