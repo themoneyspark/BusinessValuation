@@ -111,7 +111,7 @@ const AdminLogin = () => {
 
             <div className="mt-6 text-center">
               <p className="text-sm text-slate-500">
-                Demo credentials: admin@koharigonzalez.com / admin123
+                Demo credentials: Sara / Sara@1025
               </p>
             </div>
           </CardContent>
