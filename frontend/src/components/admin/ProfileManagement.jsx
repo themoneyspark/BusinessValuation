@@ -35,6 +35,11 @@ const ProfileManagement = () => {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(true);
   const [profileImage, setProfileImage] = useState(null);
   const [profileImagePreview, setProfileImagePreview] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = useRef(null);
+  const [showActivityLogs, setShowActivityLogs] = useState(false);
   const [profileData, setProfileData] = useState({
     name: 'Sara Gonzalez',
     email: 'Sara.Gonzalez@kgob.cpa',
