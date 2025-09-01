@@ -563,18 +563,30 @@ const ProfileManagement = () => {
                       <p className="text-sm text-green-700">Your account is secure</p>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => setShowActivityLogs(true)}
+                  >
                     View Details
                   </Button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                  <div 
+                    className="flex items-center justify-between p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors"
+                    onClick={() => setShowTwoFactorSetup(true)}
+                  >
                     <div>
                       <p className="font-medium text-slate-900">Two-Factor Auth</p>
-                      <p className="text-sm text-slate-600">Enabled</p>
+                      <p className="text-sm text-slate-600">
+                        {twoFactorEnabled ? 'Enabled' : 'Disabled'}
+                      </p>
                     </div>
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-2 h-2 rounded-full ${twoFactorEnabled ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                      <Settings className="w-4 h-4 text-slate-400" />
+                    </div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
                     <div>
@@ -586,6 +598,47 @@ const ProfileManagement = () => {
                     </Button>
                   </div>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Recent Activity */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                <span>Recent Activity</span>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => setShowActivityLogs(true)}
+                  className="text-[#20B2AA]"
+                >
+                  <Eye className="w-4 h-4 mr-1" />
+                  View All
+                </Button>
+              </CardTitle>
+              <CardDescription>Your latest account activities</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {recentActivities.map((activity) => (
+                  <div key={activity.id} className="flex items-start space-x-3 p-2 hover:bg-slate-50 rounded-lg">
+                    <div className="mt-1">
+                      {getActivityIcon(activity.type)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-slate-900">{activity.action}</p>
+                      <p className="text-xs text-slate-600 truncate">{activity.description}</p>
+                      <div className="flex items-center space-x-2 mt-1">
+                        <span className="text-xs text-slate-500">
+                          {new Date(activity.timestamp).toLocaleString()}
+                        </span>
+                        <span className="text-xs text-slate-400">•</span>
+                        <span className="text-xs text-slate-500">{activity.location}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
