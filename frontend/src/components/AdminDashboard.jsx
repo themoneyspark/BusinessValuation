@@ -55,17 +55,30 @@ const AdminDashboard = () => {
       ]
     },
     {
-      category: 'Platform Operations',
+      category: 'Content & Reports',
       items: [
-        { id: 'support', name: 'Support Tickets', icon: Headphones, count: mockMetrics.openTickets },
-        { id: 'analytics', name: 'Reports & Analytics', icon: BarChart3, count: mockMetrics.reportsGenerated },
+        { id: 'reports', name: 'Report Management', icon: FileText, count: '24 reports' },
+        { id: 'analytics', name: 'Reports & Analytics', icon: BarChart3, count: mockMetrics.reportsGenerated }
+      ]
+    },
+    {
+      category: 'AI & Features',
+      items: [
+        { id: 'ai', name: 'AI Management', icon: Bot, count: '15.2K queries' },
+        { id: 'support', name: 'Support Tickets', icon: Headphones, count: mockMetrics.openTickets }
+      ]
+    },
+    {
+      category: 'Advanced Security',
+      items: [
+        { id: 'roles', name: 'Role Management', icon: Shield, count: '8 roles' },
+        { id: 'security', name: 'Security Center', icon: Shield, count: '2 alerts' },
         { id: 'system', name: 'System Health', icon: Activity, count: `${mockMetrics.systemUptime}%` }
       ]
     },
     {
-      category: 'Security & System',
+      category: 'System Settings',
       items: [
-        { id: 'security', name: 'Security Center', icon: Shield, count: '2 alerts' },
         { id: 'settings', name: 'Platform Settings', icon: Settings, count: null }
       ]
     }
