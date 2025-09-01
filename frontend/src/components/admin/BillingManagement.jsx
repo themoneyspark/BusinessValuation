@@ -284,18 +284,18 @@ const BillingManagement = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <div className="w-8 h-8 bg-black rounded flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-sm">R</span>
+              <div className="w-8 h-8 bg-[#20B2AA] rounded flex items-center justify-center mr-3">
+                <Mail className="w-4 h-4 text-white" />
               </div>
-              Resend Integration
+              Email Notifications
             </CardTitle>
-            <CardDescription>Email notifications and billing communications</CardDescription>
+            <CardDescription>Automated billing and payment notifications</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                <span className="text-sm font-medium">Connected & Active</span>
+                <span className="text-sm font-medium">Active & Configured</span>
               </div>
               <Button variant="outline" size="sm">
                 <Settings className="w-4 h-4 mr-2" />
@@ -304,12 +304,12 @@ const BillingManagement = () => {
             </div>
             <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
               <div>
-                <p className="text-slate-600">Emails Sent</p>
-                <p className="font-semibold">2,456</p>
+                <p className="text-slate-600">Notifications Sent</p>
+                <p className="font-semibold">1,234</p>
               </div>
               <div>
-                <p className="text-slate-600">Delivery Rate</p>
-                <p className="font-semibold">99.2%</p>
+                <p className="text-slate-600">Success Rate</p>
+                <p className="font-semibold">98.7%</p>
               </div>
             </div>
           </CardContent>
