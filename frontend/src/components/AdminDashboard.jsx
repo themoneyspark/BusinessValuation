@@ -187,6 +187,10 @@ const AdminDashboard = () => {
         return <RoleManagement />;
       case 'ai':
         return <AIManagement />;
+      case 'profile':
+        return <ProfileManagement />;
+      case 'password-change':
+        return <PasswordChange />;
       default:
         return <DashboardOverview quickMetrics={quickMetrics} />;
     }
