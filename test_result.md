@@ -116,6 +116,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Successfully updated admin email in dropdown from sara.gonzalez@koharigonzalez.com to Sara.Gonzalez@kgob.cpa"
+      - working: true
+        agent: "testing"
+        comment: "TESTED: ✅ Admin email correctly displays as Sara.Gonzalez@kgob.cpa in dropdown. Login works with Sara/Sara@1025 credentials. Navigation to profile management successful."
   
   - task: "Implement profile picture upload with chunked uploads"
     implemented: true
