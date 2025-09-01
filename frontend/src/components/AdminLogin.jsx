@@ -44,7 +44,7 @@ const AdminLogin = () => {
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-[#20B2AA] rounded-lg mb-4">
             <img 
-              src="https://customer-assets.emergentagent.com/job_ade93c71-5b26-473c-9a63-fa3def684fd0/artifacts/fu5a2wt2_Screen%20Shot%202025-08-31%20at%209.55.17%20AM.png" 
+              src="https://customer-assets.emergentagent.com/job_valuation-admin/artifacts/v9sv37me_Screen%20Shot%202025-09-01%20at%2012.39.26%20PM.png" 
               alt="KohariGonzalez Logo" 
               className="w-12 h-12 object-contain"
             />
