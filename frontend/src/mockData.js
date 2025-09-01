@@ -509,7 +509,15 @@ export const mockTeamMembers = [
     ticketsResolved: 145,
     avgResponseTime: "2.5 hours",
     status: "active",
-    joinDate: "2023-06-15"
+    joinDate: "2023-06-15",
+    permissions: {
+      viewFinancials: true,
+      manageUsers: true,
+      uploadReports: true,
+      impersonateUsers: true,
+      manageAI: false
+    },
+    lastImpersonation: "2024-12-29"
   },
   {
     id: 2,
@@ -520,7 +528,15 @@ export const mockTeamMembers = [
     ticketsResolved: 89,
     avgResponseTime: "3.2 hours",
     status: "active",
-    joinDate: "2023-09-20"
+    joinDate: "2023-09-20",
+    permissions: {
+      viewFinancials: false,
+      manageUsers: false,
+      uploadReports: false,
+      impersonateUsers: true,
+      manageAI: false
+    },
+    lastImpersonation: "2024-12-30"
   },
   {
     id: 3,
@@ -531,6 +547,184 @@ export const mockTeamMembers = [
     ticketsResolved: 67,
     avgResponseTime: "1.8 hours",
     status: "active",
-    joinDate: "2024-02-10"
+    joinDate: "2024-02-10",
+    permissions: {
+      viewFinancials: true,
+      manageUsers: false,
+      uploadReports: false,
+      impersonateUsers: false,
+      manageAI: false
+    },
+    lastImpersonation: null
+  }
+];
+
+export const mockReports = [
+  {
+    id: 1,
+    fileName: "ABC_Corp_Business_Scorecard_Dec2024.pdf",
+    businessEntity: "ABC Corporation",
+    reportType: "Business Scorecard",
+    assignedTo: "Michael Johnson",
+    assignedEmail: "michael.johnson@email.com",
+    uploadedBy: "Jane Smith",
+    uploadDate: "2024-12-30",
+    fileSize: "2.4 MB",
+    status: "delivered",
+    accessOverride: true,
+    deliveryDate: "2024-12-30",
+    downloadCount: 3
+  },
+  {
+    id: 2,
+    fileName: "XYZ_Inc_PREScore_Analysis_Dec2024.pdf", 
+    businessEntity: "XYZ Inc",
+    reportType: "PREScore Analysis",
+    assignedTo: "Sarah Thompson",
+    assignedEmail: "sarah.thompson@business.com",
+    uploadedBy: "Jane Smith",
+    uploadDate: "2024-12-28",
+    fileSize: "1.8 MB",
+    status: "pending",
+    accessOverride: false,
+    deliveryDate: null,
+    downloadCount: 0
+  },
+  {
+    id: 3,
+    fileName: "DEF_LLC_Freedom_Point_Analysis_Dec2024.pdf",
+    businessEntity: "DEF LLC",
+    reportType: "Freedom Point Analysis", 
+    assignedTo: "Emma Rodriguez",
+    assignedEmail: "emma.rodriguez@consulting.com",
+    uploadedBy: "Jane Smith",
+    uploadDate: "2024-12-25",
+    fileSize: "3.1 MB",
+    status: "delivered",
+    accessOverride: true,
+    deliveryDate: "2024-12-26",
+    downloadCount: 7
+  },
+  {
+    id: 4,
+    fileName: "GHI_Corp_Quarterly_Review_Q4_2024.pdf",
+    businessEntity: "GHI Corporation",
+    reportType: "Quarterly Review",
+    assignedTo: "Robert Taylor",
+    assignedEmail: "robert.taylor@corporation.com", 
+    uploadedBy: "Emily Davis",
+    uploadDate: "2024-12-20",
+    fileSize: "4.2 MB",
+    status: "failed",
+    accessOverride: false,
+    deliveryDate: null,
+    downloadCount: 0
+  }
+];
+
+export const mockAIUsage = {
+  monthlyStats: {
+    totalQueries: 15247,
+    activeSessions: 1156,
+    costThisMonth: 423.50,
+    resetDate: "2025-01-01",
+    daysUntilReset: 12
+  },
+  userLimits: [
+    {
+      userId: 1,
+      userName: "Michael Johnson",
+      tier: "Premium",
+      monthlyLimit: 100,
+      used: 87,
+      remaining: 13,
+      lastQuery: "2024-12-30",
+      topQuery: "How to improve cash flow?"
+    },
+    {
+      userId: 2,
+      userName: "Sarah Thompson", 
+      tier: "Professional",
+      monthlyLimit: 50,
+      used: 45,
+      remaining: 5,
+      lastQuery: "2024-12-29",
+      topQuery: "Business valuation methods"
+    },
+    {
+      userId: 4,
+      userName: "Emma Rodriguez",
+      tier: "Premium", 
+      monthlyLimit: 100,
+      used: 92,
+      remaining: 8,
+      lastQuery: "2024-12-30",
+      topQuery: "Exit planning strategies"
+    }
+  ],
+  popularQueries: [
+    { query: "How to improve cash flow?", count: 234, category: "Finance" },
+    { query: "Business valuation methods", count: 189, category: "Valuation" },
+    { query: "Exit planning strategies", count: 156, category: "Exit Planning" },
+    { query: "Tax optimization tips", count: 134, category: "Tax" },
+    { query: "Growth funding options", count: 112, category: "Growth" }
+  ]
+};
+
+export const mockAuditLogs = [
+  {
+    id: 1,
+    timestamp: "2024-12-30 14:30:22",
+    user: "Jane Smith",
+    userEmail: "jane.smith@kgob.com",
+    action: "Report Upload",
+    details: "Uploaded ABC_Corp_Business_Scorecard_Dec2024.pdf for Michael Johnson",
+    ipAddress: "192.168.1.100",
+    userAgent: "Chrome/120.0.0",
+    category: "Content Management"
+  },
+  {
+    id: 2,
+    timestamp: "2024-12-30 13:45:15",
+    user: "Alex Johnson",
+    userEmail: "alex.johnson@kgob.com", 
+    action: "User Impersonation",
+    details: "Started impersonating user Sarah Thompson (sarah.thompson@business.com)",
+    ipAddress: "192.168.1.101",
+    userAgent: "Chrome/120.0.0",
+    category: "Security"
+  },
+  {
+    id: 3,
+    timestamp: "2024-12-30 12:20:33",
+    user: "Emily Davis",
+    userEmail: "emily.davis@kgob.com",
+    action: "Permission Change",
+    details: "Updated role permissions for Technical Support role",
+    ipAddress: "192.168.1.102", 
+    userAgent: "Firefox/121.0.0",
+    category: "User Management"
+  },
+  {
+    id: 4,
+    timestamp: "2024-12-30 11:15:44",
+    user: "Michael Johnson",
+    userEmail: "michael.johnson@email.com",
+    action: "Report Download",
+    details: "Downloaded ABC_Corp_Business_Scorecard_Dec2024.pdf",
+    ipAddress: "203.45.67.89",
+    userAgent: "Safari/17.0.0",
+    category: "Content Access"
+  },
+  {
+    id: 5,
+    timestamp: "2024-12-30 10:30:12", 
+    user: "Jane Smith",
+    userEmail: "jane.smith@kgob.com",
+    action: "AI Credit Injection",
+    details: "Added 25 AI credits to Emma Rodriguez account",
+    ipAddress: "192.168.1.100",
+    userAgent: "Chrome/120.0.0",
+    category: "AI Management"
   }
 ];
