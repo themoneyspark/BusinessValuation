@@ -225,7 +225,7 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <div className="flex pt-20">
+      <div className="flex pt-16">
         {/* Admin Sidebar */}
         <aside className={`fixed left-0 top-20 h-[calc(100vh-5rem)] w-64 bg-white border-r border-slate-200 overflow-y-auto transition-transform duration-300 z-40 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
