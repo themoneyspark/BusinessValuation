@@ -26,6 +26,10 @@ import { useToast } from '../../hooks/use-toast';
 
 const ProfileManagement = () => {
   const [editing, setEditing] = useState(false);
+  const [showTwoFactorSetup, setShowTwoFactorSetup] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(true);
+  const [profileImage, setProfileImage] = useState(null);
+  const [profileImagePreview, setProfileImagePreview] = useState(null);
   const [profileData, setProfileData] = useState({
     name: 'Sara Gonzalez',
     email: 'sara.gonzalez@koharigonzalez.com',
