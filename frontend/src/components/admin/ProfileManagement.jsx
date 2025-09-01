@@ -69,16 +69,116 @@ const ProfileManagement = () => {
     // Reset form data if needed
   };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setProfileImage(file);
+  const validateFile = (file) => {
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    
+    if (!allowedTypes.includes(file.type)) {
+      toast({
+        title: "Invalid File Type",
+        description: "Please upload a JPG, PNG, or GIF image.",
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    if (file.size > maxSize) {
+      toast({
+        title: "File Too Large",
+        description: "Please upload an image smaller than 2MB.",
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    return true;
+  };
+
+  const uploadFile = async (file) => {
+    if (!validateFile(file)) return;
+    
+    setIsUploading(true);
+    setUploadProgress(0);
+    
+    try {
+      // Simulate chunked upload with progress
+      const chunkSize = 64 * 1024; // 64KB chunks
+      const totalChunks = Math.ceil(file.size / chunkSize);
+      
+      for (let i = 0; i < totalChunks; i++) {
+        const start = i * chunkSize;
+        const end = Math.min(start + chunkSize, file.size);
+        const chunk = file.slice(start, end);
+        
+        // Simulate API call with FormData
+        const formData = new FormData();
+        formData.append('chunk', chunk);
+        formData.append('chunkIndex', i);
+        formData.append('totalChunks', totalChunks);
+        formData.append('fileName', file.name);
+        
+        // Mock upload progress
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        const progress = Math.round(((i + 1) / totalChunks) * 100);
+        setUploadProgress(progress);
+      }
+      
+      // Set the uploaded image preview
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileImagePreview(reader.result);
+        setProfileImage(file);
+        toast({
+          title: "Upload Successful",
+          description: "Profile picture uploaded successfully.",
+        });
+        setIsUploading(false);
+        setUploadProgress(0);
       };
       reader.readAsDataURL(file);
+      
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({
+        title: "Upload Failed",
+        description: "Failed to upload profile picture. Please try again.",
+        variant: "destructive",
+      });
+      setIsUploading(false);
+      setUploadProgress(0);
     }
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      uploadFile(file);
+    }
+  };
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      uploadFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const openFileDialog = () => {
+    fileInputRef.current?.click();
   };
 
   const removeImage = () => {
