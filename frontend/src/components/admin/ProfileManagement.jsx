@@ -10,8 +10,12 @@ import {
   Camera,
   Shield,
   Clock,
-  Activity
+  Activity,
+  Upload,
+  X,
+  Settings
 } from 'lucide-react';
+import TwoFactorAuth from './TwoFactorAuth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
