@@ -69,8 +69,8 @@ const AdminLogin = () => {
                 <Label htmlFor="email">Email Address</Label>
                 <Input
                   id="email"
-                  type="email"
-                  placeholder="admin@koharigonzalez.com"
+                  type="text"
+                  placeholder="Sara"
                   value={credentials.email}
                   onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
                   required
