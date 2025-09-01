@@ -46,6 +46,8 @@ import SystemHealth from './admin/SystemHealth';
 import ReportManagement from './admin/ReportManagement';
 import RoleManagement from './admin/RoleManagement';
 import AIManagement from './admin/AIManagement';
+import ProfileManagement from './admin/ProfileManagement';
+import PasswordChange from './admin/PasswordChange';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
