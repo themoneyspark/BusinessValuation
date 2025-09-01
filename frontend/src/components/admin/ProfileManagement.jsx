@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   User, 
   Mail, 
@@ -13,7 +13,11 @@ import {
   Activity,
   Upload,
   X,
-  Settings
+  Settings,
+  Eye,
+  AlertTriangle,
+  CheckCircle,
+  Key
 } from 'lucide-react';
 import TwoFactorAuth from './TwoFactorAuth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -22,6 +26,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Textarea } from '../ui/textarea';
+import { Badge } from '../ui/badge';
 import { useToast } from '../../hooks/use-toast';
 
 const ProfileManagement = () => {
