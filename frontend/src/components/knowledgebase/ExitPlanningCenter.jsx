@@ -148,22 +148,99 @@ const ExitPlanningCenter = ({ userTier }) => {
     );
   };
 
-  const currentPhase = phases.find(p => p.id === activePhase);
+  const handlePhaseCompletion = (phaseId, data) => {
+    setCompletedAssessments(prev => ({
+      ...prev,
+      [`phase${phaseId}`]: data
+    }));
+    setUserProgress(prev => ({
+      ...prev,
+      [phaseId]: 100
+    }));
+    
+    // Auto-advance to next phase
+    if (phaseId < 5) {
+      setActivePhase(phaseId + 1);
+    }
+  };
 
   const renderPhaseContent = () => {
+    const currentPhase = phases.find(p => p.id === activePhase);
+    
+    if (currentPhase?.status === 'locked') {
+      return (
+        <Card>
+          <CardContent className="p-12 text-center">
+            <Star className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-700 mb-4">
+              Complete Previous Phases to Unlock
+            </h3>
+            <p className="text-gray-600">
+              You must complete Phase {activePhase - 1} before accessing this content.
+            </p>
+          </CardContent>
+        </Card>
+      );
+    }
+
     switch(activePhase) {
       case 1:
-        return renderPhase1Content();
+        return <Phase1BusinessBaseline onComplete={(data) => handlePhaseCompletion(1, data)} savedData={completedAssessments.phase1} />;
       case 2:
-        return renderPhase2Content();
+        return <Phase2FinancialCalculators userTier={userTier} />;
       case 3:
-        return renderPhase3Content();
+        return (
+          <Card>
+            <CardContent className="p-8 text-center">
+              <TrendingUp className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Phase 3: Business Readiness Assessment
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Owner Centricity Analysis & Management Assessment tools are being finalized...
+              </p>
+              <Button className="bg-teal-600 hover:bg-teal-700">
+                Schedule Phase 3 Consultation
+              </Button>
+            </CardContent>
+          </Card>
+        );
       case 4:
-        return renderPhase4Content();
+        return (
+          <Card>
+            <CardContent className="p-8 text-center">
+              <User className="w-16 h-16 text-teal-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Phase 4: Personal Readiness & Vision Development
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Personal Vision Builder and Identity Transition tools are being finalized...
+              </p>
+              <Button className="bg-teal-600 hover:bg-teal-700">
+                Schedule Phase 4 Consultation
+              </Button>
+            </CardContent>
+          </Card>
+        );
       case 5:
-        return renderPhase5Content();
+        return (
+          <Card>
+            <CardContent className="p-8 text-center">
+              <Target className="w-16 h-16 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Phase 5: Action Planning & Implementation
+              </h3>
+              <p className="text-gray-600 mb-6">
+                SMART Goals Development & Priority Matrix tools are being finalized...
+              </p>
+              <Button className="bg-teal-600 hover:bg-teal-700">
+                Schedule Phase 5 Consultation
+              </Button>
+            </CardContent>
+          </Card>
+        );
       default:
-        return <div>Phase content loading...</div>;
+        return <div>Loading phase content...</div>;
     }
   };
 
