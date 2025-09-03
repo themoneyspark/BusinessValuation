@@ -11,13 +11,16 @@ import {
   Award,
   ArrowRight,
   Clock,
-  Star
+  Star,
+  Building
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import Phase1BusinessBaseline from './Phase1BusinessBaseline';
+import Phase2FinancialCalculators from './Phase2FinancialCalculators';
 
 const ExitPlanningCenter = ({ userTier }) => {
   const [activePhase, setActivePhase] = useState(1);
