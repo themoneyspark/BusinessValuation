@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Lock } from 'lucide-react';
+import { Button } from './ui/button';
 import QuickStats from './QuickStats';
 import DashboardTabs from './DashboardTabs';
 import BusinessQuotes from './modules/BusinessQuotes';
