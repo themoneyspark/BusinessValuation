@@ -40,8 +40,8 @@ const ExitPlanningCenter = ({ userTier }) => {
       color: "blue",
       duration: "90-120 min",
       status: completedAssessments.phase1 ? 'completed' : 'available',
-      tools: ["47-Point Business Assessment", "Stakeholder Impact Analysis", "Documentation System"],
-      outcomes: ["Complete business profile", "Stakeholder risk map", "Documentation roadmap"]
+      tools: ["127-Point Business Assessment", "12-Group Stakeholder Analysis", "Advanced Documentation System"],
+      outcomes: ["Comprehensive business profile", "Risk-weighted stakeholder map", "Professional documentation audit"]
     },
     {
       id: 2, 
