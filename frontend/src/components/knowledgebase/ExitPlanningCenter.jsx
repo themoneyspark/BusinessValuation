@@ -92,24 +92,30 @@ const ExitPlanningCenter = ({ userTier }) => {
         {phases.map((phase) => {
           const Icon = phase.icon;
           const isActive = activePhase === phase.id;
-          const isCompleted = userProgress[phase.id]?.completed;
-          const progress = userProgress[phase.id]?.progress || 0;
+          const isCompleted = phase.status === 'completed';
+          const isLocked = phase.status === 'locked';
+          const progress = userProgress[phase.id] || (isCompleted ? 100 : 0);
           
           return (
             <Card 
               key={phase.id}
               className={`cursor-pointer transition-all duration-300 ${
-                isActive ? `ring-2 ring-${phase.color}-500 shadow-lg scale-105` : 'hover:shadow-md hover:scale-102'
+                isLocked ? 'opacity-50 cursor-not-allowed' :
+                isActive ? `ring-2 ring-${phase.color}-500 shadow-lg scale-105` : 
+                'hover:shadow-md hover:scale-102'
               }`}
-              onClick={() => setActivePhase(phase.id)}
+              onClick={() => !isLocked && setActivePhase(phase.id)}
             >
               <CardContent className="p-6 text-center">
                 <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 ${
                   isCompleted ? 'bg-green-500 text-white' : 
+                  isLocked ? 'bg-gray-300 text-gray-500' :
                   isActive ? `bg-${phase.color}-500 text-white` : 
                   `bg-${phase.color}-100 text-${phase.color}-600`
                 }`}>
-                  {isCompleted ? <CheckSquare className="w-8 h-8" /> : <Icon className="w-8 h-8" />}
+                  {isCompleted ? <CheckSquare className="w-8 h-8" /> : 
+                   isLocked ? <Star className="w-8 h-8" /> : 
+                   <Icon className="w-8 h-8" />}
                 </div>
                 
                 <div className="space-y-2">
@@ -130,21 +136,10 @@ const ExitPlanningCenter = ({ userTier }) => {
                 
                 <div className="mt-4">
                   <Progress value={progress} className="h-2" />
-                  <div className="text-xs text-gray-500 mt-1">{progress}% Complete</div>
-                </div>
-
-                {phase.tools && (
-                  <div className="mt-3 space-y-1">
-                    {phase.tools.slice(0, 2).map((tool, index) => (
-                      <div key={index} className="text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded">
-                        {tool}
-                      </div>
-                    ))}
-                    {phase.tools.length > 2 && (
-                      <div className="text-xs text-gray-500">+{phase.tools.length - 2} more</div>
-                    )}
+                  <div className="text-xs text-gray-500 mt-1">
+                    {isCompleted ? 'Completed' : isLocked ? 'Locked' : `${progress}% Done`}
                   </div>
-                )}
+                </div>
               </CardContent>
             </Card>
           );
