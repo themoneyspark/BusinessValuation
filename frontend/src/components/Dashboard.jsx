@@ -23,8 +23,7 @@ import {
   resources 
 } from '../data/mock';
 
-const Dashboard = ({ userTier, onTierChange }) => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+const Dashboard = ({ activeTab, userTier, onTierChange }) => {
   const [dashboardTab, setDashboardTab] = useState('overview');
 
   const handleUpgrade = () => {
