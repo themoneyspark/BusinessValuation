@@ -21,6 +21,9 @@ import { Progress } from '../ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import Phase1BusinessBaseline from './Phase1BusinessBaseline';
 import Phase2FinancialCalculators from './Phase2FinancialCalculators';
+import Phase3OwnerCentricity from './Phase3OwnerCentricity';
+import Phase4PersonalVision from './Phase4PersonalVision';
+import Phase5ActionPlanning from './Phase5ActionPlanning';
 
 const ExitPlanningCenter = ({ userTier }) => {
   const [activePhase, setActivePhase] = useState(1);
