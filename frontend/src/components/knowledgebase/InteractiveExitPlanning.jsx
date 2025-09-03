@@ -490,10 +490,24 @@ const InteractiveExitPlanning = ({ userTier }) => {
 
   return (
     <div className="space-y-8">
-      {/* Hero Section */}
+      {/* KGOB Branded Hero Section */}
       <Card className="bg-gradient-to-r from-teal-600 to-blue-600 text-white">
         <CardContent className="p-8 text-center">
-          <Target className="w-16 h-16 mx-auto mb-4 opacity-80" />
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <img 
+              src="/kgob-logo.png"
+              alt="KGOB Logo" 
+              className="h-12 w-auto object-contain opacity-90"
+              style={{ filter: 'brightness(0) invert(1)' }}
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            <div className="hidden w-12 h-12 bg-white/20 rounded-lg items-center justify-center">
+              <Target className="w-6 h-6 text-white" />
+            </div>
+          </div>
           <h1 className="text-3xl font-bold mb-4">Interactive Exit Planning Center</h1>
           <p className="text-xl opacity-90 mb-6">
             Guided tools and assessments to help you plan your successful business exit
@@ -511,6 +525,9 @@ const InteractiveExitPlanning = ({ userTier }) => {
               <div className="text-2xl font-bold">95%</div>
               <div className="text-sm opacity-80">Success Rate</div>
             </div>
+          </div>
+          <div className="mt-6 text-sm opacity-80">
+            2740 East WT Harris Blvd, Suite 200, Charlotte, NC 28213 | 1-844-599-3355
           </div>
         </CardContent>
       </Card>
