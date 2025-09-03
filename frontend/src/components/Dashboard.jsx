@@ -28,6 +28,7 @@ import {
 
 const Dashboard = ({ activeTab, userTier, onTierChange }) => {
   const [dashboardTab, setDashboardTab] = useState('overview');
+  const [resourceTab, setResourceTab] = useState('library');
 
   const handleUpgrade = () => {
     if (userTier === 'Free') {
