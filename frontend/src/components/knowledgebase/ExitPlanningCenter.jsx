@@ -24,8 +24,9 @@ import Phase2FinancialCalculators from './Phase2FinancialCalculators';
 
 const ExitPlanningCenter = ({ userTier }) => {
   const [activePhase, setActivePhase] = useState(1);
-  const [userProgress, setUserProgress] = useState({});
   const [activeModule, setActiveModule] = useState('overview');
+  const [userProgress, setUserProgress] = useState({});
+  const [completedAssessments, setCompletedAssessments] = useState({});
 
   const phases = [
     {
