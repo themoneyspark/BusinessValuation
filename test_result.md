@@ -372,8 +372,11 @@ metadata:
   test_sequence: 3
 
 test_plan:
-  current_focus: []
-  stuck_tasks: []
+  current_focus:
+    - "KGOB Contact Information Corrections"
+    - "Interactive Features Functionality"
+  stuck_tasks:
+    - "Interactive Features Functionality"
   test_all: false
   test_priority: "high_first"
 
