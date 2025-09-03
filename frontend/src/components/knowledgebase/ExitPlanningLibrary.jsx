@@ -84,16 +84,26 @@ const ExitPlanningLibrary = ({ userTier }) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center py-8 bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl">
-        <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Target className="w-8 h-8 text-teal-600" />
+      {/* KGOB Branded Header */}
+      <div className="text-center py-8 bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl border border-teal-200">
+        <div className="flex items-center justify-center space-x-4 mb-6">
+          <img 
+            src="/kgob-logo.png"
+            alt="KGOB Logo"
+            className="h-16 w-auto object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Exit Planning Resource Library</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Comprehensive tools and guides to help business owners plan and execute successful exits, 
           developed by Kohari Gonzalez CPAs & Advisors.
         </p>
+        <div className="mt-4 text-sm text-gray-600">
+          2740 East WT Harris Blvd, Suite 200, Charlotte, NC 28213 | 1-844-599-3355
+        </div>
       </div>
 
       {/* Content Stats */}
