@@ -68,31 +68,31 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
             <div className="space-y-6">
               <div className="flex items-center space-x-4 mb-6">
                 <Button
-                  variant={activeTab === 'library' ? 'default' : 'outline'}
-                  onClick={() => setActiveTab('library')}
-                  className={activeTab === 'library' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                  variant={resourceTab === 'library' ? 'default' : 'outline'}
+                  onClick={() => setResourceTab('library')}
+                  className={resourceTab === 'library' ? 'bg-teal-600 hover:bg-teal-700' : ''}
                 >
                   Resource Library
                 </Button>
                 <Button
-                  variant={activeTab === 'interactive' ? 'default' : 'outline'}
-                  onClick={() => setActiveTab('interactive')}
-                  className={activeTab === 'interactive' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                  variant={resourceTab === 'interactive' ? 'default' : 'outline'}
+                  onClick={() => setResourceTab('interactive')}
+                  className={resourceTab === 'interactive' ? 'bg-teal-600 hover:bg-teal-700' : ''}
                 >
                   Interactive Tools
                 </Button>
                 <Button
-                  variant={activeTab === 'meetings' ? 'default' : 'outline'}
-                  onClick={() => setActiveTab('meetings')}
-                  className={activeTab === 'meetings' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                  variant={resourceTab === 'meetings' ? 'default' : 'outline'}
+                  onClick={() => setResourceTab('meetings')}
+                  className={resourceTab === 'meetings' ? 'bg-teal-600 hover:bg-teal-700' : ''}
                 >
                   5-Meeting System
                 </Button>
               </div>
               
-              {activeTab === 'library' && <KnowledgeBase userTier={userTier} />}
-              {activeTab === 'interactive' && <KnowledgeBase userTier={userTier} />}  
-              {activeTab === 'meetings' && <ComprehensiveMeetingSystem userTier={userTier} />}
+              {resourceTab === 'library' && <KnowledgeBase userTier={userTier} />}
+              {resourceTab === 'interactive' && <KnowledgeBase userTier={userTier} />}  
+              {resourceTab === 'meetings' && <ComprehensiveMeetingSystem userTier={userTier} />}
             </div>
           );
         } else {
