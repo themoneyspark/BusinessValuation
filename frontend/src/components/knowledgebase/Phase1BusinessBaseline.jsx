@@ -793,7 +793,14 @@ const Phase1BusinessBaseline = ({ onComplete, savedData = {} }) => {
                 <p className="text-sm text-gray-600">{currentSectionData.description}</p>
               </div>
             </div>
-            <Badge className={`bg-${currentSectionData.color}-500 text-white`}>
+            <Badge className={`text-white ${
+              currentSectionData.color === 'blue' ? 'bg-blue-500' :
+              currentSectionData.color === 'green' ? 'bg-green-500' :
+              currentSectionData.color === 'purple' ? 'bg-purple-500' :
+              currentSectionData.color === 'teal' ? 'bg-teal-500' :
+              currentSectionData.color === 'orange' ? 'bg-orange-500' :
+              'bg-blue-500'
+            }`}>
               {currentSectionData.weight}% Weight
             </Badge>
           </CardTitle>
