@@ -94,7 +94,7 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
               
               {resourceTab === 'library' && <KnowledgeBase userTier={userTier} />}
               {resourceTab === 'interactive' && <KnowledgeBase userTier={userTier} />}  
-              {resourceTab === 'meetings' && <ComprehensiveMeetingSystem userTier={userTier} />}
+              {resourceTab === 'meetings' && <ExitPlanningCenter userTier={userTier} />}
             </div>
           );
         } else {
