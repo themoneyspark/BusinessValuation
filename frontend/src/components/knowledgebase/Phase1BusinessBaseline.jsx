@@ -768,7 +768,14 @@ const Phase1BusinessBaseline = ({ onComplete, savedData = {} }) => {
 
       {/* Current Section */}
       <Card>
-        <CardHeader className={`bg-gradient-to-r from-${currentSectionData.color}-50 to-${currentSectionData.color}-100`}>
+        <CardHeader className={`bg-gradient-to-r ${
+          currentSectionData.color === 'blue' ? 'from-blue-50 to-blue-100' :
+          currentSectionData.color === 'green' ? 'from-green-50 to-green-100' :
+          currentSectionData.color === 'purple' ? 'from-purple-50 to-purple-100' :
+          currentSectionData.color === 'teal' ? 'from-teal-50 to-teal-100' :
+          currentSectionData.color === 'orange' ? 'from-orange-50 to-orange-100' :
+          'from-blue-50 to-blue-100'
+        }`}>
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
