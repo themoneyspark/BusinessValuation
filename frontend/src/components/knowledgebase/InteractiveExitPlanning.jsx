@@ -599,7 +599,10 @@ const InteractiveExitPlanning = ({ userTier }) => {
               Kohari Gonzalez CPAs & Advisors | Charlotte, NC
             </p>
             <p className="text-gray-400 text-sm mt-1">
-              2740 East WT Harris Blvd, Suite 200 | Phone: 1-844-599-3355 | support@kgob.cpa
+              2740 East WT Harris Blvd, Suite 200, Charlotte, NC 28213
+            </p>
+            <p className="text-gray-400 text-xs mt-1">
+              Phone: 1-844-599-3355 | Email: support@kgob.cpa
             </p>
           </div>
         </CardContent>
