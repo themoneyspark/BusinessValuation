@@ -101,8 +101,14 @@ const ExitPlanningCenter = ({ userTier }) => {
               key={phase.id}
               className={`cursor-pointer transition-all duration-300 ${
                 isLocked ? 'opacity-50 cursor-not-allowed' :
-                isActive ? `ring-2 ring-${phase.color}-500 shadow-lg scale-105` : 
-                'hover:shadow-md hover:scale-102'
+                isActive ? (
+                  phase.color === 'blue' ? 'ring-2 ring-blue-500 shadow-lg scale-105' :
+                  phase.color === 'green' ? 'ring-2 ring-green-500 shadow-lg scale-105' :
+                  phase.color === 'purple' ? 'ring-2 ring-purple-500 shadow-lg scale-105' :
+                  phase.color === 'teal' ? 'ring-2 ring-teal-500 shadow-lg scale-105' :
+                  phase.color === 'orange' ? 'ring-2 ring-orange-500 shadow-lg scale-105' :
+                  'ring-2 ring-blue-500 shadow-lg scale-105'
+                ) : 'hover:shadow-md hover:scale-102'
               }`}
               onClick={() => !isLocked && setActivePhase(phase.id)}
             >
