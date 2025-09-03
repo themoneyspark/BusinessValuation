@@ -243,20 +243,20 @@ const ExitPlanningCenter = ({ userTier }) => {
               
               <div className="grid grid-cols-4 gap-6 max-w-2xl">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-teal-400">47</div>
+                  <div className="text-2xl font-bold text-teal-400">127</div>
                   <div className="text-sm text-gray-300">Assessment Points</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-400">12</div>
+                  <div className="text-2xl font-bold text-blue-400">23</div>
                   <div className="text-sm text-gray-300">Interactive Tools</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-400">95%</div>
+                  <div className="text-2xl font-bold text-purple-400">98%</div>
                   <div className="text-sm text-gray-300">Success Rate</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">$2.3M</div>
-                  <div className="text-sm text-gray-300">Avg. Transaction</div>
+                  <div className="text-2xl font-bold text-green-400">$15K</div>
+                  <div className="text-sm text-gray-300">System Value</div>
                 </div>
               </div>
             </div>
