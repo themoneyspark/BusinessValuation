@@ -3,15 +3,19 @@ import { Search, Filter, Grid, List, Download, Eye, Lock, Star } from 'lucide-re
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import CategoryFilter from './CategoryFilter';
 import ArticleCard from './ArticleCard';
 import TierUpgradePrompt from './TierUpgradePrompt';
+import InteractiveExitPlanning from './InteractiveExitPlanning';
+import ExitPlanningLibrary from './ExitPlanningLibrary';
 import { categories, getContentByCategory, getUpgradePromptData } from '../../data/knowledgeBaseMock';
 
 const KnowledgeBase = ({ userTier }) => {
   const [selectedCategory, setSelectedCategory] = useState('finance');
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState('grid'); // grid or list
+  const [viewMode, setViewMode] = useState('grid');
+  const [activeTab, setActiveTab] = useState('library');
 
   // Only Subscribers get full access
   if (userTier !== 'Subscriber') {
@@ -26,7 +30,7 @@ const KnowledgeBase = ({ userTier }) => {
               Knowledge Base Access
             </h3>
             <p className="text-gray-600 mb-6">
-              Access our comprehensive library of business valuation resources, templates, and guides.
+              Access our comprehensive library of business valuation resources, templates, guides, and interactive tools.
             </p>
             <div className="space-y-4">
               <div className="bg-white rounded-lg p-4 border border-gray-200">
@@ -48,6 +52,16 @@ const KnowledgeBase = ({ userTier }) => {
                   <div className="text-purple-600 font-bold">22</div>
                   <div className="text-gray-600">Exit Planning</div>
                 </div>
+              </div>
+              <div className="mt-6 p-4 bg-teal-50 rounded-lg border border-teal-200">
+                <h4 className="font-semibold text-teal-800 mb-2">Includes Interactive Features:</h4>
+                <ul className="text-sm text-teal-700 space-y-1">
+                  <li>• Wealth Gap Calculator</li>
+                  <li>• Exit Readiness Assessment</li>
+                  <li>• Interactive Checklists</li>
+                  <li>• Guided Process Workflows</li>
+                  <li>• Q&A Knowledge Testing</li>
+                </ul>
               </div>
             </div>
             <Button 
@@ -80,7 +94,7 @@ const KnowledgeBase = ({ userTier }) => {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Knowledge Base</h1>
           <p className="text-gray-600 mt-2">
-            Professional resources, templates, and guides for business growth and valuation
+            Professional resources, interactive tools, and guided assessments
           </p>
         </div>
         <div className="flex items-center space-x-3">
@@ -101,85 +115,95 @@ const KnowledgeBase = ({ userTier }) => {
         </div>
       </div>
 
-      {/* Search and Filters */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex items-center space-x-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input
-                placeholder="Search articles, templates, and guides..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            <Button variant="outline" className="flex items-center space-x-2">
-              <Filter className="w-4 h-4" />
-              <span>Filter</span>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Main Content Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="library">Resource Library</TabsTrigger>
+          <TabsTrigger value="interactive">Interactive Tools</TabsTrigger>
+          <TabsTrigger value="exit-planning">Exit Planning Suite</TabsTrigger>
+        </TabsList>
 
-      {/* Category Navigation */}
-      <CategoryFilter 
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        userTier={userTier}
-      />
-
-      {/* Content Statistics */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="text-sm text-blue-700">
-              <strong>{filteredContent.length}</strong> resources available in {selectedCategoryData?.name}
-            </div>
-            {selectedCategoryData && (
-              <div className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
-                ✅ Full Subscriber Access
+        <TabsContent value="library">
+          {/* Search and Filters */}
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center space-x-4">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    placeholder="Search articles, templates, and guides..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+                <Button variant="outline" className="flex items-center space-x-2">
+                  <Filter className="w-4 h-4" />
+                  <span>Filter</span>
+                </Button>
               </div>
-            )}
-          </div>
-          <div className="text-xs text-blue-600">
-            Total in category: {selectedCategoryData?.articleCount.total}
-          </div>
-        </div>
-      </div>
+            </CardContent>
+          </Card>
 
-      {/* Content Grid/List */}
-      <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
-        {filteredContent.map((article) => (
-          <ArticleCard
-            key={article.id}
-            article={article}
+          {/* Category Navigation */}
+          <CategoryFilter 
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
             userTier={userTier}
-            viewMode={viewMode}
           />
-        ))}
-      </div>
 
-      {/* Empty State */}
-      {filteredContent.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-gray-400 mb-4">
-            <Search className="w-12 h-12 mx-auto" />
+          {/* Content Statistics */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="text-sm text-blue-700">
+                  <strong>{filteredContent.length}</strong> resources available in {selectedCategoryData?.name}
+                </div>
+                {selectedCategoryData && (
+                  <div className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                    ✅ Full Subscriber Access
+                  </div>
+                )}
+              </div>
+              <div className="text-xs text-blue-600">
+                Total in category: {selectedCategoryData?.articleCount.total}
+              </div>
+            </div>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No resources found</h3>
-          <p className="text-gray-600">Try adjusting your search or category filter.</p>
-        </div>
-      )}
 
-      {/* Upgrade Prompt for Additional Content */}
-      {userTier !== 'Subscriber' && (
-        <TierUpgradePrompt 
-          upgradeData={upgradeData}
-          currentTier={userTier}
-          category={selectedCategoryData?.name}
-        />
-      )}
+          {/* Content Grid/List */}
+          <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
+            {filteredContent.map((article) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                userTier={userTier}
+                viewMode={viewMode}
+              />
+            ))}
+          </div>
+
+          {/* Empty State */}
+          {filteredContent.length === 0 && (
+            <div className="text-center py-12">
+              <div className="text-gray-400 mb-4">
+                <Search className="w-12 h-12 mx-auto" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No resources found</h3>
+              <p className="text-gray-600">Try adjusting your search or category filter.</p>
+            </div>
+          )}
+        </TabsContent>
+
+        <TabsContent value="interactive">
+          <InteractiveExitPlanning userTier={userTier} />
+        </TabsContent>
+
+        <TabsContent value="exit-planning">
+          <ExitPlanningLibrary userTier={userTier} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
