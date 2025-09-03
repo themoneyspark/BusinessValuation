@@ -182,7 +182,10 @@ In our next meeting (Meeting #2), we'll discuss your financial targets and analy
 
 Best regards,
 {ADVISOR_NAME}
-Kohari Gonzalez CPAs & Advisors`
+Kohari Gonzalez CPAs & Advisors
+2740 East WT Harris Blvd, Suite 200
+Charlotte, NC 28213
+Phone: 1-844-599-3355`
           }
         ]
       },
