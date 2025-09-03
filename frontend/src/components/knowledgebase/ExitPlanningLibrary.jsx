@@ -185,7 +185,7 @@ const ExitPlanningLibrary = ({ userTier }) => {
               © 2024 Kohari Gonzalez CPAs & Advisors | Professional Exit Planning Services
             </p>
             <p className="text-gray-400 text-xs mt-1">
-              San Antonio, Texas | Licensed CPAs | Certified Exit Planning Advisors
+              2740 East WT Harris Blvd, Suite 200, Charlotte, NC 28213 | Phone: 1-844-599-3355 | support@kgob.cpa
             </p>
           </div>
         </CardContent>
