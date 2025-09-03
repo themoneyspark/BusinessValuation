@@ -19,7 +19,7 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import Phase1BusinessBaseline from './Phase1BusinessBaseline';
+import EnhancedPhase1 from './EnhancedPhase1';
 import Phase2FinancialCalculators from './Phase2FinancialCalculators';
 import Phase3OwnerCentricity from './Phase3OwnerCentricity';
 import Phase4PersonalVision from './Phase4PersonalVision';
