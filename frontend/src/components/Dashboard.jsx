@@ -63,6 +63,7 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
         }
         return <GoalsTracker goals={goals} />;
       case 'resources':
+        // Always render KnowledgeBase component - it handles its own tier restrictions
         if (userTier === 'Subscriber') {
           return (
             <div className="space-y-6">
@@ -96,11 +97,8 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
             </div>
           );
         } else {
-          // Non-subscribers get completely locked out
-          return renderLockedContent(
-            'Knowledge Base & Exit Planning Tools', 
-            'Access our comprehensive exit planning system with interactive calculators, assessments, and professional resources. Available exclusively to Subscriber clients.'
-          );
+          // Free and Buyer tiers get the KnowledgeBase component which shows proper locked screens
+          return <KnowledgeBase userTier={userTier} />;
         }
       case 'reports':
         if (!['Buyer', 'Subscriber'].includes(userTier)) {
