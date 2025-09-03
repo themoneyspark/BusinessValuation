@@ -579,10 +579,10 @@ const InteractiveExitPlanning = ({ userTier }) => {
           </Button>
           <div className="mt-6 pt-6 border-t border-gray-700">
             <p className="text-gray-400">
-              Kohari Gonzalez CPAs & Advisors | San Antonio, Texas
+              Kohari Gonzalez CPAs & Advisors | Charlotte, NC
             </p>
             <p className="text-gray-400 text-sm mt-1">
-              Certified Exit Planning Advisors | Licensed CPAs
+              2740 East WT Harris Blvd, Suite 200 | Phone: 1-844-599-3355 | support@kgob.cpa
             </p>
           </div>
         </CardContent>
