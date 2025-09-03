@@ -62,7 +62,45 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
         }
         return <GoalsTracker goals={goals} />;
       case 'resources':
-        return <KnowledgeBase userTier={userTier} />;
+        if (userTier === 'Subscriber') {
+          return (
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4 mb-6">
+                <Button
+                  variant={activeTab === 'library' ? 'default' : 'outline'}
+                  onClick={() => setActiveTab('library')}
+                  className={activeTab === 'library' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                >
+                  Resource Library
+                </Button>
+                <Button
+                  variant={activeTab === 'interactive' ? 'default' : 'outline'}
+                  onClick={() => setActiveTab('interactive')}
+                  className={activeTab === 'interactive' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                >
+                  Interactive Tools
+                </Button>
+                <Button
+                  variant={activeTab === 'meetings' ? 'default' : 'outline'}
+                  onClick={() => setActiveTab('meetings')}
+                  className={activeTab === 'meetings' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                >
+                  5-Meeting System
+                </Button>
+              </div>
+              
+              {activeTab === 'library' && <KnowledgeBase userTier={userTier} />}
+              {activeTab === 'interactive' && <KnowledgeBase userTier={userTier} />}  
+              {activeTab === 'meetings' && <ComprehensiveMeetingSystem userTier={userTier} />}
+            </div>
+          );
+        } else {
+          // Non-subscribers get completely locked out
+          return renderLockedContent(
+            'Knowledge Base & Exit Planning Tools', 
+            'Access our comprehensive exit planning system with interactive calculators, assessments, and professional resources. Available exclusively to Subscriber clients.'
+          );
+        }
       case 'reports':
         if (!['Buyer', 'Subscriber'].includes(userTier)) {
           return renderLockedContent('My Reports', 'Generate and download comprehensive business reports.');
