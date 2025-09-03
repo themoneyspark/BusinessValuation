@@ -110,8 +110,21 @@ const ExitPlanningCenter = ({ userTier }) => {
                 <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 ${
                   isCompleted ? 'bg-green-500 text-white' : 
                   isLocked ? 'bg-gray-300 text-gray-500' :
-                  isActive ? `bg-${phase.color}-500 text-white` : 
-                  `bg-${phase.color}-100 text-${phase.color}-600`
+                  isActive ? (
+                    phase.color === 'blue' ? 'bg-blue-500 text-white' :
+                    phase.color === 'green' ? 'bg-green-500 text-white' :
+                    phase.color === 'purple' ? 'bg-purple-500 text-white' :
+                    phase.color === 'teal' ? 'bg-teal-500 text-white' :
+                    phase.color === 'orange' ? 'bg-orange-500 text-white' :
+                    'bg-blue-500 text-white'
+                  ) : (
+                    phase.color === 'blue' ? 'bg-blue-100 text-blue-600' :
+                    phase.color === 'green' ? 'bg-green-100 text-green-600' :
+                    phase.color === 'purple' ? 'bg-purple-100 text-purple-600' :
+                    phase.color === 'teal' ? 'bg-teal-100 text-teal-600' :
+                    phase.color === 'orange' ? 'bg-orange-100 text-orange-600' :
+                    'bg-blue-100 text-blue-600'
+                  )
                 }`}>
                   {isCompleted ? <CheckSquare className="w-8 h-8" /> : 
                    isLocked ? <Star className="w-8 h-8" /> : 
