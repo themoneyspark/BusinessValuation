@@ -92,7 +92,7 @@ const Sidebar = ({ activeTab, onTabChange, userTier }) => {
               <Button
                 key={item.id}
                 variant="ghost"
-                onClick={() => !isLocked && onTabChange(item.id)}
+                onClick={() => onTabChange(item.id)}
                 className={`w-full h-14 justify-start px-6 mb-1 ${
                   isActive 
                     ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
