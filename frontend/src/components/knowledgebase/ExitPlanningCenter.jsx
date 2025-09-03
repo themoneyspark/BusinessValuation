@@ -207,7 +207,7 @@ const ExitPlanningCenter = ({ userTier }) => {
 
     switch(activePhase) {
       case 1:
-        return <Phase1BusinessBaseline onComplete={(data) => handlePhaseCompletion(1, data)} savedData={completedAssessments.phase1} />;
+        return <EnhancedPhase1 onComplete={(data) => handlePhaseCompletion(1, data)} savedData={completedAssessments.phase1} />;
       case 2:
         return <Phase2FinancialCalculators userTier={userTier} />;
       case 3:
