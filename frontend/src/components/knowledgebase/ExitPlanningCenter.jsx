@@ -36,16 +36,18 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: Users,
       color: "blue",
       duration: "90-120 min",
-      tools: ["Stakeholder Assessment", "Business Baseline", "Documentation Checklist"],
-      outcomes: ["Comprehensive stakeholder map", "Complete business baseline", "Documentation roadmap"]
+      status: completedAssessments.phase1 ? 'completed' : 'available',
+      tools: ["47-Point Business Assessment", "Stakeholder Impact Analysis", "Documentation System"],
+      outcomes: ["Complete business profile", "Stakeholder risk map", "Documentation roadmap"]
     },
     {
       id: 2, 
       title: "Financial Readiness",
-      subtitle: "Wealth Gap & Financial Feasibility", 
+      subtitle: "Cash Flow Analysis & Wealth Gap Calculation", 
       icon: DollarSign,
       color: "green",
       duration: "90-120 min",
+      status: completedAssessments.phase2 ? 'completed' : (completedAssessments.phase1 ? 'available' : 'locked'),
       tools: ["Cash Flow Normalization", "Wealth Gap Calculator", "Exit Feasibility Analysis"],
       outcomes: ["Normalized cash flow", "Precise wealth gap", "Financial readiness score"]
     },
@@ -56,18 +58,20 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: TrendingUp,
       color: "purple", 
       duration: "90-120 min",
-      tools: ["Owner Centricity Assessment", "Management Succession Planning", "Value Enhancement Matrix"],
-      outcomes: ["Owner dependency score", "Management gaps identified", "Value improvement plan"]
+      status: completedAssessments.phase3 ? 'completed' : (completedAssessments.phase2 ? 'available' : 'locked'),
+      tools: ["Owner Centricity Assessment", "Management Depth Analysis", "Value Enhancement Planning"],
+      outcomes: ["Owner dependency score", "Management gaps", "Value improvement plan"]
     },
     {
       id: 4,
       title: "Personal Readiness", 
-      subtitle: "Vision Development & Identity Transition",
+      subtitle: "Vision Development & Identity Planning",
       icon: User,
       color: "teal",
       duration: "90-120 min", 
+      status: completedAssessments.phase4 ? 'completed' : (completedAssessments.phase3 ? 'available' : 'locked'),
       tools: ["Personal Vision Builder", "Identity Transition Planner", "Lifestyle Designer"],
-      outcomes: ["Personal vision statement", "Identity transition plan", "Lifestyle blueprint"]
+      outcomes: ["Personal vision", "Identity plan", "Lifestyle blueprint"]
     },
     {
       id: 5,
@@ -76,8 +80,9 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: Target,
       color: "orange",
       duration: "90-120 min",
+      status: completedAssessments.phase5 ? 'completed' : (completedAssessments.phase4 ? 'available' : 'locked'),
       tools: ["SMART Goals Generator", "Priority Matrix", "Implementation Tracker"],
-      outcomes: ["Prioritized action plan", "SMART goals defined", "Implementation timeline"]
+      outcomes: ["Action plan", "SMART goals", "Timeline"]
     }
   ];
 
