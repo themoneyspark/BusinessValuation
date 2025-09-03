@@ -53,7 +53,7 @@ const Sidebar = ({ activeTab, onTabChange, userTier }) => {
     },
     {
       id: 'resources',
-      label: 'Resources',
+      label: 'Knowledge Base',
       icon: Folder,
       tiers: ['Subscriber'],
       locked: userTier !== 'Subscriber',
