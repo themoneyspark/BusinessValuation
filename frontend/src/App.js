@@ -32,6 +32,7 @@ function App() {
           userTier={currentUser.tier}
         />
         <Dashboard 
+          activeTab={activeTab}
           userTier={currentUser.tier}
           onTierChange={handleTierChange}
         />
