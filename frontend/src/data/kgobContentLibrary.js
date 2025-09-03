@@ -159,7 +159,10 @@ I look forward to working with you to create a successful exit strategy that ach
 Best regards,
 {ADVISOR_NAME}
 Kohari Gonzalez CPAs & Advisors
-{CONTACT_INFO}`
+2740 East WT Harris Blvd, Suite 200
+Charlotte, NC 28213
+Phone: 1-844-599-3355
+Email: support@kgob.cpa`
           },
           {
             timing: 'Pre-Meeting #2',
