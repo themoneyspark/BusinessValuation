@@ -14,6 +14,7 @@ import ResourceLibrary from './modules/ResourceLibrary';
 import KPIExplorer from './modules/KPIExplorer';
 import KnowledgeBase from './knowledgebase/KnowledgeBase';
 import ComprehensiveMeetingSystem from './knowledgebase/ComprehensiveMeetingSystem';
+import ExitPlanningCenter from './knowledgebase/ExitPlanningCenter';
 
 import { 
   quickStats, 
