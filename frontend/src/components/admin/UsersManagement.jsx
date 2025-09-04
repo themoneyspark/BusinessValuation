@@ -54,7 +54,7 @@ import {
   DialogTrigger,
 } from '../ui/dialog';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { mockUsers } from '../../mockData';
+import { mockUsers } from '../../data/adminMockData';
 
 const UsersManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
