@@ -552,17 +552,17 @@ const PersonalizedRecommendationEngine = ({ userTier }) => {
       {/* Analysis Results */}
       {renderAnalysisResults()}
 
-      {/* Future AI Enhancement Note */}
+      {/* Ask Sara Enhancement Ready */}
       <Card className="bg-gradient-to-r from-gray-50 to-blue-50 border-gray-300 border-dashed">
         <CardContent className="p-6 text-center">
           <Zap className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-gray-900 mb-2">Future AI Enhancement Ready</h3>
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Ask Sara AI Enhancement Ready</h3>
           <p className="text-gray-600 mb-4">
-            This system is designed to integrate with ChatGPT 5 for enhanced natural language 
+            This system is designed to integrate with Ask Sara for enhanced natural language 
             recommendations while maintaining complete independence.
           </p>
           <Badge className="bg-blue-100 text-blue-700">
-            AI Integration Layer: Prepared for ChatGPT 5
+            AI Integration Layer: Prepared for Ask Sara
           </Badge>
         </CardContent>
       </Card>
