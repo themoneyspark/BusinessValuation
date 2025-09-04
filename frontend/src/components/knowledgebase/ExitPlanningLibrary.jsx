@@ -93,8 +93,12 @@ const ExitPlanningLibrary = ({ userTier }) => {
             className="h-16 w-auto object-contain"
             onError={(e) => {
               e.target.style.display = 'none';
+              e.target.nextElementSibling.style.display = 'flex';
             }}
           />
+          <div className="hidden w-16 h-16 bg-teal-500 rounded-xl items-center justify-center">
+            <span className="text-white font-bold text-2xl">KG</span>
+          </div>
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Exit Planning Resource Library</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
