@@ -8,12 +8,13 @@ import {
   Folder, 
   Download, 
   Settings,
+  Shield,
   Lock,
   Badge
 } from 'lucide-react';
 import { Button } from './ui/button';
 
-const Sidebar = ({ activeTab, onTabChange, userTier }) => {
+const Sidebar = ({ activeTab, onTabChange, userTier, userRole }) => {
   const menuItems = [
     {
       id: 'dashboard',
@@ -69,6 +70,18 @@ const Sidebar = ({ activeTab, onTabChange, userTier }) => {
     }
   ];
 
+  // Add admin menu item for admin users
+  if (userRole === 'admin') {
+    menuItems.push({
+      id: 'admin',
+      label: 'Admin Panel',
+      icon: Shield,
+      tiers: ['Admin'],
+      always: true,
+      badge: 'ADMIN'
+    });
+  }
+
   const settingsItem = {
     id: 'settings',
     label: 'Settings',
@@ -95,7 +108,9 @@ const Sidebar = ({ activeTab, onTabChange, userTier }) => {
                 onClick={() => onTabChange(item.id)}
                 className={`w-full h-14 justify-start px-6 mb-1 ${
                   isActive 
-                    ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
+                    ? item.id === 'admin' 
+                      ? 'bg-red-50 text-red-600 border-r-2 border-red-600'
+                      : 'bg-blue-50 text-blue-600 border-r-2 border-blue-600'
                     : 'text-gray-700 hover:bg-gray-100'
                 } ${isLocked ? 'opacity-60 cursor-not-allowed' : ''}`}
               >
@@ -112,6 +127,8 @@ const Sidebar = ({ activeTab, onTabChange, userTier }) => {
                       <span className={`text-xs px-2 py-1 rounded-full ${
                         item.badge === 'NEW' 
                           ? 'bg-green-100 text-green-700'
+                          : item.badge === 'ADMIN'
+                          ? 'bg-red-100 text-red-700'
                           : 'bg-blue-100 text-blue-700'
                       }`}>
                         {item.badge}
