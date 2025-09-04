@@ -193,6 +193,10 @@ const AdminDashboard = () => {
         return <ProfileManagement />;
       case 'password-change':
         return <PasswordChange />;
+      case 'activity-log':
+        return <ActivityLogs />;
+      case 'two-factor-auth':
+        return <TwoFactorAuth />;
       default:
         return <DashboardOverview quickMetrics={quickMetrics} />;
     }
