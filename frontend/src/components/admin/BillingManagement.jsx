@@ -57,7 +57,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog';
-import { mockBillingData, mockMetrics } from '../../mockData';
+import { mockBillingData, mockMetrics } from '../../data/adminMockData';
 
 const BillingManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
