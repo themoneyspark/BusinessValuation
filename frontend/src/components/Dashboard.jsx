@@ -64,7 +64,6 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
         }
         return <GoalsTracker goals={goals} />;
       case 'resources':
-        // Always render KnowledgeBase component - it handles its own tier restrictions
         if (userTier === 'Subscriber') {
           return (
             <div className="space-y-6">
@@ -84,6 +83,13 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
                   Interactive Tools
                 </Button>
                 <Button
+                  variant={resourceTab === 'recommendations' ? 'default' : 'outline'}
+                  onClick={() => setResourceTab('recommendations')}
+                  className={resourceTab === 'recommendations' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                >
+                  AI Recommendations
+                </Button>
+                <Button
                   variant={resourceTab === 'meetings' ? 'default' : 'outline'}
                   onClick={() => setResourceTab('meetings')}
                   className={resourceTab === 'meetings' ? 'bg-teal-600 hover:bg-teal-700' : ''}
@@ -92,9 +98,7 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
                 </Button>
               </div>
               
-              {resourceTab === 'library' && <KnowledgeBase userTier={userTier} />}
-              {resourceTab === 'interactive' && <KnowledgeBase userTier={userTier} />}  
-              {resourceTab === 'meetings' && <ExitPlanningCenter userTier={userTier} />}
+              <KnowledgeBase userTier={userTier} />
             </div>
           );
         } else {
