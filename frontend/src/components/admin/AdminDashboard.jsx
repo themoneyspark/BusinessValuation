@@ -192,49 +192,49 @@ const AdminDashboard = ({ userRole }) => {
     );
   };
 
-  const renderClientManagement = () => {
-    return (
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Users className="w-5 h-5 text-blue-600" />
-              <span>Client Management</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-center py-12">
-              <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-700 mb-4">
-                Admin Interface Integration Ready
-              </h3>
-              <p className="text-gray-600 mb-6">
-                This section will integrate your existing admin interface components from the admindashboard branch.
-              </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-2">Integration Status:</h4>
-                <div className="space-y-2 text-sm text-blue-700">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>Admin framework established</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <AlertTriangle className="w-4 h-4" />
-                    <span>Awaiting admin components from admindashboard branch</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Target className="w-4 h-4" />
-                    <span>Role-based access control configured</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
-  };
+  // const renderClientManagement = () => {
+  //   return (
+  //     <div className="space-y-6">
+  //       <Card>
+  //         <CardHeader>
+  //           <CardTitle className="flex items-center space-x-2">
+  //             <Users className="w-5 h-5 text-blue-600" />
+  //             <span>Client Management</span>
+  //           </CardTitle>
+  //         </CardHeader>
+  //         <CardContent>
+  //           <div className="text-center py-12">
+  //             <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+  //             <h3 className="text-xl font-semibold text-gray-700 mb-4">
+  //               Admin Interface Integration Ready
+  //             </h3>
+  //             <p className="text-gray-600 mb-6">
+  //               This section will integrate your existing admin interface components from the admindashboard branch.
+  //             </p>
+  //             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+  //               <h4 className="font-semibold text-blue-900 mb-2">Integration Status:</h4>
+  //               <div className="space-y-2 text-sm text-blue-700">
+  //                 <div className="flex items-center space-x-2">
+  //                   <CheckCircle className="w-4 h-4" />
+  //                   <span>Admin framework established</span>
+  //                 </div>
+  //                 <div className="flex items-center space-x-2">
+  //                   <AlertTriangle className="w-4 h-4" />
+  //                   <span>Awaiting admin components from admindashboard branch</span>
+  //                 </div>
+  //                 <div className="flex items-center space-x-2">
+  //                   <Target className="w-4 h-4" />
+  //                   <span>Role-based access control configured</span>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </CardContent>
+  //         </Card>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="space-y-6">
