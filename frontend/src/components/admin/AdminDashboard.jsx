@@ -253,7 +253,17 @@ const AdminDashboard = ({ userRole }) => {
         </TabsContent>
 
         <TabsContent value="clients">
-          {renderClientManagement()}
+          <Card>
+            <CardContent className="p-8 text-center">
+              <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-700 mb-4">
+                Client Management (Temporarily Disabled)
+              </h3>
+              <p className="text-gray-600 mb-6">
+                This section is temporarily disabled for debugging.
+              </p>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="assessments">
