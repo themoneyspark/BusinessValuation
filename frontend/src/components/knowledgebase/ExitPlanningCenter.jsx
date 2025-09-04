@@ -91,81 +91,154 @@ const ExitPlanningCenter = ({ userTier }) => {
 
   const renderPhaseNavigation = () => {
     return (
-      <div className="grid grid-cols-5 gap-4 mb-8">
-        {phases.map((phase) => {
-          const Icon = phase.icon;
-          const isActive = activePhase === phase.id;
-          const isCompleted = phase.status === 'completed';
-          const isLocked = phase.status === 'locked';
-          const progress = userProgress[phase.id] || (isCompleted ? 100 : 0);
-          
-          return (
-            <Card 
-              key={phase.id}
-              className={`cursor-pointer transition-all duration-300 ${
-                isLocked ? 'opacity-50 cursor-not-allowed' :
-                isActive ? (
-                  phase.color === 'blue' ? 'ring-2 ring-blue-500 shadow-lg scale-105' :
-                  phase.color === 'green' ? 'ring-2 ring-green-500 shadow-lg scale-105' :
-                  phase.color === 'purple' ? 'ring-2 ring-purple-500 shadow-lg scale-105' :
-                  phase.color === 'teal' ? 'ring-2 ring-teal-500 shadow-lg scale-105' :
-                  phase.color === 'orange' ? 'ring-2 ring-orange-500 shadow-lg scale-105' :
-                  'ring-2 ring-blue-500 shadow-lg scale-105'
-                ) : 'hover:shadow-md hover:scale-102'
-              }`}
-              onClick={() => !isLocked && setActivePhase(phase.id)}
-            >
-              <CardContent className="p-6 text-center">
-                <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 ${
-                  isCompleted ? 'bg-green-500 text-white' : 
-                  isLocked ? 'bg-gray-300 text-gray-500' :
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          Complete 5-Phase Exit Planning Journey
+        </h2>
+        <div className="grid grid-cols-5 gap-4">
+          {phases.map((phase) => {
+            const Icon = phase.icon;
+            const isActive = activePhase === phase.id;
+            const isCompleted = phase.status === 'completed';
+            const isLocked = phase.status === 'locked';
+            const progress = userProgress[phase.id] || (isCompleted ? 100 : 0);
+            
+            return (
+              <Card 
+                key={phase.id}
+                className={`cursor-pointer transition-all duration-300 border-2 ${
+                  isLocked ? 'opacity-50 cursor-not-allowed border-gray-200' :
                   isActive ? (
-                    phase.color === 'blue' ? 'bg-blue-500 text-white' :
-                    phase.color === 'green' ? 'bg-green-500 text-white' :
-                    phase.color === 'purple' ? 'bg-purple-500 text-white' :
-                    phase.color === 'teal' ? 'bg-teal-500 text-white' :
-                    phase.color === 'orange' ? 'bg-orange-500 text-white' :
-                    'bg-blue-500 text-white'
-                  ) : (
-                    phase.color === 'blue' ? 'bg-blue-100 text-blue-600' :
-                    phase.color === 'green' ? 'bg-green-100 text-green-600' :
-                    phase.color === 'purple' ? 'bg-purple-100 text-purple-600' :
-                    phase.color === 'teal' ? 'bg-teal-100 text-teal-600' :
-                    phase.color === 'orange' ? 'bg-orange-100 text-orange-600' :
-                    'bg-blue-100 text-blue-600'
-                  )
-                }`}>
-                  {isCompleted ? <CheckSquare className="w-8 h-8" /> : 
-                   isLocked ? <Star className="w-8 h-8" /> : 
-                   <Icon className="w-8 h-8" />}
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                    Phase {phase.id}
+                    phase.color === 'blue' ? 'ring-4 ring-blue-200 border-blue-500 shadow-xl scale-105' :
+                    phase.color === 'green' ? 'ring-4 ring-green-200 border-green-500 shadow-xl scale-105' :
+                    phase.color === 'purple' ? 'ring-4 ring-purple-200 border-purple-500 shadow-xl scale-105' :
+                    phase.color === 'teal' ? 'ring-4 ring-teal-200 border-teal-500 shadow-xl scale-105' :
+                    phase.color === 'orange' ? 'ring-4 ring-orange-200 border-orange-500 shadow-xl scale-105' :
+                    'ring-4 ring-blue-200 border-blue-500 shadow-xl scale-105'
+                  ) : 'border-gray-200 hover:shadow-lg hover:scale-102 hover:border-gray-300'
+                }`}
+                onClick={() => !isLocked && setActivePhase(phase.id)}
+              >
+                <CardContent className="p-6">
+                  <div className="text-center space-y-4">
+                    {/* Phase Icon */}
+                    <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto shadow-lg ${
+                      isCompleted ? 'bg-green-500 text-white' : 
+                      isLocked ? 'bg-gray-300 text-gray-500' :
+                      isActive ? (
+                        phase.color === 'blue' ? 'bg-blue-500 text-white' :
+                        phase.color === 'green' ? 'bg-green-500 text-white' :
+                        phase.color === 'purple' ? 'bg-purple-500 text-white' :
+                        phase.color === 'teal' ? 'bg-teal-500 text-white' :
+                        phase.color === 'orange' ? 'bg-orange-500 text-white' :
+                        'bg-blue-500 text-white'
+                      ) : (
+                        phase.color === 'blue' ? 'bg-blue-100 text-blue-600' :
+                        phase.color === 'green' ? 'bg-green-100 text-green-600' :
+                        phase.color === 'purple' ? 'bg-purple-100 text-purple-600' :
+                        phase.color === 'teal' ? 'bg-teal-100 text-teal-600' :
+                        phase.color === 'orange' ? 'bg-orange-100 text-orange-600' :
+                        'bg-blue-100 text-blue-600'
+                      )
+                    }`}>
+                      {isCompleted ? <CheckSquare className="w-8 h-8" /> : 
+                       isLocked ? <Star className="w-8 h-8" /> : 
+                       <Icon className="w-8 h-8" />}
+                    </div>
+                    
+                    {/* Phase Info */}
+                    <div className="space-y-2">
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        Phase {phase.id}
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-base leading-tight">
+                        {phase.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-tight">
+                        {phase.subtitle}
+                      </p>
+                      <div className="text-xs text-gray-500 flex items-center justify-center space-x-1">
+                        <Clock className="w-3 h-3" />
+                        <span>{phase.duration}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Progress Bar */}
+                    <div className="space-y-2">
+                      <Progress value={progress} className="h-2" />
+                      <div className="text-xs text-gray-600">
+                        {isCompleted ? 'Completed ✓' : isLocked ? 'Locked' : `${progress}% Done`}
+                      </div>
+                    </div>
+                    
+                    {/* Tools Preview */}
+                    {!isLocked && (
+                      <div className="space-y-1">
+                        <div className="text-xs font-medium text-gray-700">Key Tools:</div>
+                        <div className="space-y-1">
+                          {phase.tools.slice(0, 2).map((tool, index) => (
+                            <div key={index} className="text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded">
+                              {tool}
+                            </div>
+                          ))}
+                          {phase.tools.length > 2 && (
+                            <div className="text-xs text-gray-500">+{phase.tools.length - 2} more tools</div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Action Button */}
+                    {!isLocked && (
+                      <Button 
+                        size="sm"
+                        className={`w-full ${
+                          isCompleted ? 'bg-green-600 hover:bg-green-700' :
+                          isActive ? (
+                            phase.color === 'blue' ? 'bg-blue-600 hover:bg-blue-700' :
+                            phase.color === 'green' ? 'bg-green-600 hover:bg-green-700' :
+                            phase.color === 'purple' ? 'bg-purple-600 hover:bg-purple-700' :
+                            phase.color === 'teal' ? 'bg-teal-600 hover:bg-teal-700' :
+                            'bg-orange-600 hover:bg-orange-700'
+                          ) : 'bg-gray-600 hover:bg-gray-700'
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActivePhase(phase.id);
+                        }}
+                      >
+                        {isCompleted ? 'Review' : isActive ? 'Continue' : 'Start Phase'}
+                      </Button>
+                    )}
                   </div>
-                  <h3 className="font-bold text-gray-900 text-sm leading-tight">
-                    {phase.title}
-                  </h3>
-                  <p className="text-xs text-gray-600">
-                    {phase.subtitle}
-                  </p>
-                  <div className="text-xs text-gray-500 flex items-center justify-center space-x-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{phase.duration}</span>
-                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+        
+        {/* Phase Progress Summary */}
+        <Card className="mt-6 bg-gradient-to-r from-blue-50 to-teal-50 border-blue-200">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                  <Target className="w-6 h-6 text-white" />
                 </div>
-                
-                <div className="mt-4">
-                  <Progress value={progress} className="h-2" />
-                  <div className="text-xs text-gray-500 mt-1">
-                    {isCompleted ? 'Completed' : isLocked ? 'Locked' : `${progress}% Done`}
-                  </div>
+                <div>
+                  <h3 className="font-bold text-gray-900">Overall Exit Planning Progress</h3>
+                  <p className="text-sm text-gray-600">Complete all phases for comprehensive exit strategy</p>
                 </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+              </div>
+              <div className="text-right">
+                <div className="text-3xl font-bold text-blue-600">
+                  {Object.values(completedAssessments).length}/5
+                </div>
+                <div className="text-sm text-gray-600">Phases Complete</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   };
