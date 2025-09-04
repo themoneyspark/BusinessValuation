@@ -55,7 +55,7 @@ import { Progress } from '../ui/progress';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Label } from '../ui/label';
 import { useToast } from '../../hooks/use-toast';
-import { mockAIUsage } from '../../mockData';
+import { mockAIUsage } from '../../data/adminMockData';
 
 const AIManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
