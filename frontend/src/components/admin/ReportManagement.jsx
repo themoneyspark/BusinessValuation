@@ -56,7 +56,7 @@ import { Label } from '../ui/label';
 import { Switch } from '../ui/switch';
 import { Textarea } from '../ui/textarea';
 import { useToast } from '../../hooks/use-toast';
-import { mockReports, mockUsers } from '../../mockData';
+import { mockReports, mockUsers } from '../../data/adminMockData';
 
 const ReportManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
