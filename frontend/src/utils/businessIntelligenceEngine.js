@@ -154,9 +154,9 @@ export class BusinessIntelligenceEngine {
       recommendations.push(managementDevRec);
     }
 
-    // Enhanced with AI if available
+    // Enhanced with Ask Sara AI if available
     if (this.aiIntegrationEnabled) {
-      return await this.enhanceRecommendationsWithAI(recommendations, businessData);
+      return await this.enhanceRecommendationsWithSara(recommendations, businessData);
     }
 
     return this.prioritizeRecommendations(recommendations, businessData);
