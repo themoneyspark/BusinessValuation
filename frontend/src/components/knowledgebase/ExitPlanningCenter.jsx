@@ -50,7 +50,7 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: DollarSign,
       color: "green",
       duration: "90-120 min",
-      status: completedAssessments.phase2 ? 'completed' : (completedAssessments.phase1 ? 'available' : 'locked'),
+      status: completedAssessments.phase2 ? 'completed' : 'available', // Always available for testing
       tools: ["Cash Flow Normalization", "Wealth Gap Calculator", "Exit Feasibility Analysis"],
       outcomes: ["Normalized cash flow", "Precise wealth gap", "Financial readiness score"]
     },
@@ -61,7 +61,7 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: TrendingUp,
       color: "purple", 
       duration: "90-120 min",
-      status: completedAssessments.phase3 ? 'completed' : (completedAssessments.phase2 ? 'available' : 'locked'),
+      status: completedAssessments.phase3 ? 'completed' : 'available', // Always available for testing
       tools: ["Owner Centricity Assessment", "Management Depth Analysis", "Value Enhancement Planning"],
       outcomes: ["Owner dependency score", "Management gaps", "Value improvement plan"]
     },
@@ -72,7 +72,7 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: User,
       color: "teal",
       duration: "90-120 min", 
-      status: completedAssessments.phase4 ? 'completed' : (completedAssessments.phase3 ? 'available' : 'locked'),
+      status: completedAssessments.phase4 ? 'completed' : 'available', // Always available for testing
       tools: ["Personal Vision Builder", "Identity Transition Planner", "Lifestyle Designer"],
       outcomes: ["Personal vision", "Identity plan", "Lifestyle blueprint"]
     },
@@ -83,7 +83,7 @@ const ExitPlanningCenter = ({ userTier }) => {
       icon: Target,
       color: "orange",
       duration: "90-120 min",
-      status: completedAssessments.phase5 ? 'completed' : (completedAssessments.phase4 ? 'available' : 'locked'),
+      status: completedAssessments.phase5 ? 'completed' : 'available', // Always available for testing
       tools: ["SMART Goals Generator", "Priority Matrix", "Implementation Tracker"],
       outcomes: ["Action plan", "SMART goals", "Timeline"]
     }
