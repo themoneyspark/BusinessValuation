@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
 import AdminLogin from "./components/AdminLogin";
 import UserLogin from "./components/UserLogin";
+import AdminDashboardComplete from "./components/AdminDashboardComplete";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -89,19 +90,12 @@ function App() {
             } 
           />
 
-          {/* Admin Dashboard Route */}
+          {/* Admin Dashboard Route - Your Complete Admin Interface */}
           <Route 
             path="/admin-dashboard" 
             element={
               currentUser?.role === 'admin' ? (
-                <>
-                  {/* Import and use your original AdminDashboard from admindashboard branch */}
-                  <div className="min-h-screen">
-                    <div dangerouslySetInnerHTML={{
-                      __html: '<div style="padding: 20px; text-align: center; background: linear-gradient(135deg, #1e293b, #0f172a); color: white; min-height: 100vh;"><h1 style="font-size: 2rem; margin-bottom: 1rem;">KGOB Admin Dashboard</h1><p>Your comprehensive admin interface from admindashboard branch is integrated here</p><div style="margin-top: 2rem;"><button onclick="window.location.href=\'/dashboard\'" style="background: #17a2b8; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Return to User Dashboard</button></div></div>'
-                    }} />
-                  </div>
-                </>
+                <AdminDashboardComplete />
               ) : (
                 <Navigate to="/admin-login" replace />
               )
