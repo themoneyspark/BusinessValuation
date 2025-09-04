@@ -13,8 +13,9 @@ import GrowthNavigator from './modules/GrowthNavigator';
 import ResourceLibrary from './modules/ResourceLibrary';
 import KPIExplorer from './modules/KPIExplorer';
 import KnowledgeBase from './knowledgebase/KnowledgeBase';
-import ComprehensiveMeetingSystem from './knowledgebase/ComprehensiveMeetingSystem';
 import ExitPlanningCenter from './knowledgebase/ExitPlanningCenter';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminNavigation from './admin/AdminNavigation';
 
 import { 
   quickStats, 
@@ -30,6 +31,11 @@ import {
 const Dashboard = ({ activeTab, userTier, onTierChange }) => {
   const [dashboardTab, setDashboardTab] = useState('overview');
   const [resourceTab, setResourceTab] = useState('library');
+  const [adminTab, setAdminTab] = useState('overview');
+  const [isAdminMode, setIsAdminMode] = useState(false);
+
+  // Simulate admin role - in production, this would come from authentication
+  const userRole = userTier === 'Admin' ? 'admin' : 'user';
 
   const handleUpgrade = () => {
     if (userTier === 'Free') {
@@ -42,7 +48,30 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
   // Get current tier stats - this ensures fresh data on tier change
   const currentStats = quickStats[userTier] || quickStats['Free'];
 
+  const renderLockedContent = (title, description) => (
+    <div className="text-center py-16 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200">
+      <div className="max-w-md mx-auto">
+        <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Lock className="w-10 h-10 text-blue-600" />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
+        <p className="text-gray-600 mb-6">{description}</p>
+        <Button 
+          onClick={handleUpgrade}
+          className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
+        >
+          {userTier === 'Free' ? 'Upgrade to Buyer' : 'Upgrade to Subscriber'}
+        </Button>
+      </div>
+    </div>
+  );
+
   const renderMainContent = () => {
+    // Admin Mode Override
+    if (isAdminMode) {
+      return <AdminDashboard userRole={userRole} />;
+    }
+
     switch (activeTab) {
       case 'dashboard':
         return renderDashboardContent();
@@ -112,28 +141,12 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
         return <div className="text-center py-16 text-gray-500">My Reports content coming soon...</div>;
       case 'settings':
         return <div className="text-center py-16 text-gray-500">Settings content coming soon...</div>;
+      case 'admin':
+        return <AdminDashboard userRole={userRole} />;
       default:
         return renderDashboardContent();
     }
   };
-
-  const renderLockedContent = (title, description) => (
-    <div className="text-center py-16 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200">
-      <div className="max-w-md mx-auto">
-        <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Lock className="w-10 h-10 text-blue-600" />
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
-        <p className="text-gray-600 mb-6">{description}</p>
-        <Button 
-          onClick={handleUpgrade}
-          className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
-        >
-          {userTier === 'Free' ? 'Upgrade to Buyer' : 'Upgrade to Subscriber'}
-        </Button>
-      </div>
-    </div>
-  );
 
   const renderDashboardContent = () => {
     return (
@@ -216,6 +229,26 @@ const Dashboard = ({ activeTab, userTier, onTierChange }) => {
       </div>
     );
   };
+
+  // Render with admin navigation if in admin mode
+  if (isAdminMode) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <AdminNavigation 
+          activeAdminTab={adminTab}
+          onAdminTabChange={setAdminTab}
+          onReturnToDashboard={() => setIsAdminMode(false)}
+        />
+        <main className="ml-70 pt-18">
+          <div className="p-8">
+            <div className="max-w-7xl mx-auto">
+              <AdminDashboard userRole={userRole} />
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
