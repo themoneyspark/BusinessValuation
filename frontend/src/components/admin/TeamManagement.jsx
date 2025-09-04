@@ -53,7 +53,7 @@ import {
   DialogTrigger,
 } from '../ui/dialog';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { mockTeamMembers } from '../../mockData';
+import { mockTeamMembers } from '../../data/adminMockData';
 
 const TeamManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
