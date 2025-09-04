@@ -48,6 +48,8 @@ import RoleManagement from './admin/RoleManagement';
 import AIManagement from './admin/AIManagement';
 import ProfileManagement from './admin/ProfileManagement';
 import PasswordChange from './admin/PasswordChange';
+import TwoFactorAuth from './admin/TwoFactorAuth';
+import ActivityLogs from './admin/ActivityLogs';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
