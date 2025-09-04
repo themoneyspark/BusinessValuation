@@ -421,21 +421,21 @@ const BusinessValueTracker = ({ userBusinessData, onDataUpdate }) => {
         </Card>
       )}
 
-      {/* AI Enhancement Notice */}
+      {/* Ask Sara Enhancement Notice */}
       <Card className="bg-gradient-to-r from-gray-50 to-purple-50 border-dashed border-gray-300">
         <CardContent className="p-6 text-center">
           <Award className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-gray-900 mb-2">AI-Enhanced Analysis Available</h3>
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Ask Sara AI Enhancement Available</h3>
           <p className="text-gray-600 mb-4">
-            Upgrade to include ChatGPT 5 integration for enhanced natural language recommendations 
-            and industry-specific insights tailored to your business.
+            Upgrade to include Ask Sara AI integration for enhanced natural language recommendations 
+            and personalized insights tailored specifically to your business.
           </p>
           <div className="flex items-center justify-center space-x-4">
             <Badge className="bg-purple-100 text-purple-700">
               Current: Advanced Rule-Based Engine
             </Badge>
             <Badge className="bg-blue-100 text-blue-700">
-              Future: + ChatGPT 5 Integration
+              Future: + Ask Sara AI Enhancement
             </Badge>
           </div>
         </CardContent>
