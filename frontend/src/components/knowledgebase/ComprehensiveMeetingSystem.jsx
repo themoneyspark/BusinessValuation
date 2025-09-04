@@ -151,7 +151,8 @@ const ComprehensiveMeetingSystem = ({ userTier }) => {
       const years = parseFloat(inputs.timeToExit) || 1;
       
       const annualValueNeeded = gap / years;
-      const valueImprovementPct = businessValue > 0 ? (annualValueNeeded / business) * 100 : 0;
+      const business = parseFloat(inputs.businessValue) || 0;
+      const valueImprovementPct = business > 0 ? (annualValueNeeded / business) * 100 : 0;
       
       return {
         capitalNeeded: capitalNeeded.toLocaleString(),
