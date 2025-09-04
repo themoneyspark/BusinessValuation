@@ -54,7 +54,7 @@ import {
 import { Label } from '../ui/label';
 import { Switch } from '../ui/switch';
 import { useToast } from '../../hooks/use-toast';
-import { mockCoupons } from '../../mockData';
+import { mockCoupons } from '../../data/adminMockData';
 
 const CouponManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
