@@ -34,7 +34,7 @@ import {
 } from './ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../hooks/use-toast';
-import { mockMetrics } from '../mockData';
+import { mockMetrics } from '../data/adminMockData';
 
 // Import section components
 import UsersManagement from './admin/UsersManagement';
