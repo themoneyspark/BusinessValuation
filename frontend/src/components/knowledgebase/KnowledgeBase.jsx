@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Grid, List, Download, Eye, Lock, Star } from 'lucide-react';
+import { Search, Filter, Grid, List, Download, Eye, Lock, Star, Brain, Calculator } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -9,6 +9,9 @@ import ArticleCard from './ArticleCard';
 import TierUpgradePrompt from './TierUpgradePrompt';
 import InteractiveExitPlanning from './InteractiveExitPlanning';
 import ExitPlanningLibrary from './ExitPlanningLibrary';
+import ExitPlanningCenter from './ExitPlanningCenter';
+import PersonalizedRecommendationEngine from './PersonalizedRecommendationEngine';
+import BusinessValueTracker from './BusinessValueTracker';
 import { categories, getContentByCategory, getUpgradePromptData } from '../../data/knowledgeBaseMock';
 
 const KnowledgeBase = ({ userTier }) => {
@@ -16,6 +19,23 @@ const KnowledgeBase = ({ userTier }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState('grid');
   const [activeTab, setActiveTab] = useState('library');
+  const [userBusinessData, setUserBusinessData] = useState({
+    revenue: 2500000,
+    profitMargin: 12,
+    employees: 25,
+    industry: 'professional-services',
+    ownerCentricityScore: 45,
+    topCustomerPercentage: 35,
+    managementLevels: 2,
+    wealthGap: 400000
+  });
+
+  const handleBusinessDataUpdate = (field, value) => {
+    setUserBusinessData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
   // FREE TIER gets NOTHING - completely locked out
   if (userTier === 'Free') {
