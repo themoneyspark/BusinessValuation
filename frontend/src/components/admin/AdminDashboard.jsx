@@ -228,7 +228,8 @@ const AdminDashboard = ({ userRole }) => {
                   </div>
                 </div>
               </div>
-            </CardContent>
+            </div>
+          </CardContent>
           </Card>
         </div>
       </div>
