@@ -346,11 +346,7 @@ const KnowledgeBase = ({ userTier }) => {
         </TabsContent>
 
         <TabsContent value="recommendations">
-          <PersonalizedRecommendationEngine 
-            userTier={userTier}
-            businessData={userBusinessData}
-            onDataUpdate={handleBusinessDataUpdate}
-          />
+          <PersonalizedRecommendationEngine userTier={userTier} />
         </TabsContent>
 
         <TabsContent value="value-tracker">
