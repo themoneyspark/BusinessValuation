@@ -976,8 +976,14 @@ const EnhancedPhase1 = ({ onComplete, savedData = {} }) => {
                 src="/kgob-logo.png"
                 alt="KGOB Logo"
                 className="h-8 w-auto object-contain"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
               />
+              <div className="hidden w-8 h-8 bg-teal-500 rounded-lg items-center justify-center">
+                <span className="text-white font-bold text-sm">KG</span>
+              </div>
               <div className="text-sm">
                 <div className="font-semibold">Kohari Gonzalez CPAs & Advisors</div>
                 <div className="text-gray-400">Advanced Exit Planning Intelligence</div>
