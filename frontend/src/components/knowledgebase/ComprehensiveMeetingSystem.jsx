@@ -543,8 +543,14 @@ const ComprehensiveMeetingSystem = ({ userTier }) => {
               src="/kgob-logo.png"
               alt="KGOB Logo"
               className="h-8 w-auto object-contain"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
             />
+            <div className="hidden w-8 h-8 bg-teal-500 rounded-lg items-center justify-center">
+              <span className="text-white font-bold text-sm">KG</span>
+            </div>
           </div>
           <h3 className="text-xl font-bold mb-2">Ready to Start Your Exit Planning Process?</h3>
           <p className="text-gray-300 mb-4">
