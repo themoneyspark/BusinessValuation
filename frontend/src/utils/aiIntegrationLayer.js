@@ -1,5 +1,5 @@
-// KGOB AI Integration Layer - Future ChatGPT 5 Integration
-// Designed for easy integration with external AI services when needed
+// KGOB AI Integration Layer - "Ask Sara" AI Enhancement System
+// Designed for easy integration with "Ask Sara" AI assistant when enhanced features are needed
 
 export class AIIntegrationLayer {
   constructor() {
@@ -9,19 +9,19 @@ export class AIIntegrationLayer {
     this.baseURL = null;
   }
 
-  // Enable ChatGPT 5 Integration (Future)
-  enableChatGPT5Integration(config) {
+  // Enable Ask Sara AI Integration (Future Enhancement)
+  enableAskSaraIntegration(config) {
     this.enabled = true;
-    this.provider = 'openai';
-    this.model = 'gpt-5';
+    this.provider = 'ask-sara';
+    this.model = config.model || 'sara-business-advisor';
     this.apiKey = config.apiKey;
-    this.baseURL = config.baseURL || 'https://api.openai.com/v1';
+    this.baseURL = config.baseURL || '/api/ask-sara';
     this.maxTokens = config.maxTokens || 2000;
     this.temperature = config.temperature || 0.7;
   }
 
-  // Enable Other AI Providers (Future)
-  enableAIProvider(provider, config) {
+  // Enable External AI Providers (Backup Options)
+  enableExternalAI(provider, config) {
     this.enabled = true;
     this.provider = provider;
     this.apiKey = config.apiKey;
@@ -29,27 +29,27 @@ export class AIIntegrationLayer {
     this.model = config.model;
   }
 
-  // Main AI Enhancement Function
-  async enhanceRecommendations(businessData, ruleBasedRecommendations) {
+  // Main AI Enhancement Function with Ask Sara
+  async enhanceRecommendationsWithSara(businessData, ruleBasedRecommendations) {
     if (!this.enabled) {
       return ruleBasedRecommendations; // Return rule-based recommendations as-is
     }
 
     try {
-      const prompt = this.buildPrompt(businessData, ruleBasedRecommendations);
-      const aiResponse = await this.callAIService(prompt);
-      return this.combineRuleBasedAndAI(ruleBasedRecommendations, aiResponse);
+      const prompt = this.buildSaraPrompt(businessData, ruleBasedRecommendations);
+      const saraResponse = await this.callSaraService(prompt);
+      return this.combineRuleBasedAndSara(ruleBasedRecommendations, saraResponse);
     } catch (error) {
-      console.warn('AI enhancement failed, using rule-based recommendations:', error);
+      console.warn('Ask Sara enhancement failed, using rule-based recommendations:', error);
       return ruleBasedRecommendations; // Graceful fallback
     }
   }
 
-  buildPrompt(businessData, recommendations) {
+  buildSaraPrompt(businessData, recommendations) {
     return `
-      Role: You are a senior CPA and certified exit planning advisor with 20+ years of experience.
+      Hello Sara, I need your expertise as a senior CPA and exit planning advisor.
       
-      Business Context:
+      Business Owner Profile:
       - Industry: ${businessData.industry}
       - Annual Revenue: $${businessData.revenue?.toLocaleString()}
       - Profit Margin: ${businessData.profitMargin}%
@@ -57,82 +57,62 @@ export class AIIntegrationLayer {
       - Owner Centricity Score: ${businessData.ownerCentricityScore}/100
       - Top Customer Concentration: ${businessData.topCustomerPercentage}%
       
-      Current Analysis & Recommendations:
+      Our analysis suggests these recommendations:
       ${recommendations.map(r => `
-        Priority ${r.priority}: ${r.action}
-        - Reasoning: ${r.reasoning}
+        ${r.priority}. ${r.action}
+        - Why: ${r.reasoning}
         - Expected Impact: ${r.impact}
         - Timeline: ${r.timeline}
       `).join('\n')}
       
-      Instructions:
-      1. Enhance each recommendation with specific implementation tactics
-      2. Add industry-specific insights and considerations
-      3. Identify potential obstacles and mitigation strategies  
-      4. Suggest optimal sequencing and timing
-      5. Provide encouraging, professional guidance
+      Sara, please enhance these recommendations with:
+      1. Your professional insights and implementation strategies
+      2. Industry-specific considerations for ${businessData.industry}
+      3. Potential challenges and how to overcome them
+      4. Encouraging guidance to help the owner succeed
+      5. Specific next steps they should take this week
       
-      Format: JSON response with enhanced recommendations maintaining original structure but adding:
-      - implementationTactics: [array of specific steps]
-      - industryInsights: string
-      - potentialObstacles: [array of challenges]
-      - mitigationStrategies: [array of solutions]
-      - encouragingGuidance: string (professional, supportive tone)
+      Please respond in your warm, professional, and encouraging tone as their trusted advisor.
     `;
   }
 
-  async callAIService(prompt) {
-    if (this.provider === 'openai') {
-      return await this.callOpenAI(prompt);
-    }
-    // Add other providers as needed
-    throw new Error('AI provider not configured');
-  }
-
-  async callOpenAI(prompt) {
-    const response = await fetch(`${this.baseURL}/chat/completions`, {
+  async callSaraService(prompt) {
+    // Future Ask Sara API integration
+    const response = await fetch(`${this.baseURL}/enhance-recommendations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.apiKey}`
       },
       body: JSON.stringify({
-        model: this.model,
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a senior CPA and exit planning advisor. Provide specific, actionable business guidance.'
-          },
-          {
-            role: 'user', 
-            content: prompt
-          }
-        ],
-        max_tokens: this.maxTokens,
+        prompt: prompt,
+        businessContext: true,
+        advisorRole: 'exit-planning-cpa',
+        maxTokens: this.maxTokens,
         temperature: this.temperature
       })
     });
 
     if (!response.ok) {
-      throw new Error(`AI API call failed: ${response.status}`);
+      throw new Error(`Ask Sara API call failed: ${response.status}`);
     }
 
     const data = await response.json();
-    return JSON.parse(data.choices[0].message.content);
+    return data.enhancedRecommendations;
   }
 
-  combineRuleBasedAndAI(ruleBasedRecs, aiEnhancedRecs) {
-    // Combine sophisticated rule-based calculations with AI insights
+  combineRuleBasedAndSara(ruleBasedRecs, saraEnhancedRecs) {
+    // Combine sophisticated rule-based calculations with Sara's insights
     return ruleBasedRecs.map((rec, index) => {
-      const aiEnhancement = aiEnhancedRecs[index] || {};
+      const saraEnhancement = saraEnhancedRecs[index] || {};
       return {
         ...rec,
-        implementationTactics: aiEnhancement.implementationTactics || [],
-        industryInsights: aiEnhancement.industryInsights || '',
-        potentialObstacles: aiEnhancement.potentialObstacles || [],
-        mitigationStrategies: aiEnhancement.mitigationStrategies || [],
-        encouragingGuidance: aiEnhancement.encouragingGuidance || '',
-        aiEnhanced: true
+        saraInsights: saraEnhancement.professionalInsights || '',
+        implementationStrategy: saraEnhancement.implementationStrategy || [],
+        potentialChallenges: saraEnhancement.potentialChallenges || [],
+        encouragingGuidance: saraEnhancement.encouragingGuidance || '',
+        weeklyNextSteps: saraEnhancement.weeklyNextSteps || [],
+        saraEnhanced: true
       };
     });
   }
@@ -143,6 +123,7 @@ export class AIIntegrationLayer {
       enabled: this.enabled,
       provider: this.provider,
       model: this.model,
+      aiAssistant: 'Ask Sara',
       hasApiKey: !!this.apiKey
     };
   }
@@ -155,28 +136,29 @@ export class AIIntegrationLayer {
 }
 
 // Singleton instance for global use
-export const aiIntegration = new AIIntegrationLayer();
+export const saraAI = new AIIntegrationLayer();
 
-// Future Integration Helper Functions
-export const configureFutureChatGPT5 = (apiKey) => {
-  aiIntegration.enableChatGPT5Integration({
-    apiKey: apiKey,
+// Ask Sara Integration Helper Functions
+export const enableAskSaraEnhancement = (config = {}) => {
+  saraAI.enableAskSaraIntegration({
+    apiKey: config.apiKey || 'sara-business-advisor-key',
     maxTokens: 2000,
-    temperature: 0.7
+    temperature: 0.7,
+    ...config
   });
-  return aiIntegration.getConfiguration();
+  return saraAI.getConfiguration();
 };
 
-export const configureEmergentIntegration = (emergentKey) => {
-  // Future: Integrate with Emergent Universal Key when available
-  aiIntegration.enableAIProvider('emergent', {
+export const configureEmergentSaraIntegration = (emergentKey) => {
+  // Future: Integrate Ask Sara with Emergent Universal Key when available
+  saraAI.enableExternalAI('emergent-sara', {
     apiKey: emergentKey,
-    baseURL: 'https://api.emergent.sh/v1', // Example URL
-    model: 'gpt-5' // or claude-3, gemini-pro, etc.
+    baseURL: '/api/emergent-sara',
+    model: 'sara-business-advisor'
   });
-  return aiIntegration.getConfiguration();
+  return saraAI.getConfiguration();
 };
 
 // Usage Example:
 // const analysis = await businessAnalyzer.analyzeBusinessForExitPlanning(userData);
-// const enhanced = await aiIntegration.enhanceRecommendations(userData, analysis.recommendations);
+// const saraEnhanced = await saraAI.enhanceRecommendationsWithSara(userData, analysis.recommendations);
