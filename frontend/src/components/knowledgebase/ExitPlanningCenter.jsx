@@ -302,24 +302,23 @@ const ExitPlanningCenter = ({ userTier }) => {
           <div className="flex items-center justify-between">
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-4">
                   <img 
                     src="/kgob-logo.png"
                     alt="KGOB Logo"
                     className="h-12 w-auto object-contain"
-                    style={{ filter: 'brightness(0) invert(1)' }}
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextElementSibling.style.display = 'flex';
                     }}
                   />
-                  <div className="hidden w-12 h-12 bg-teal-500 rounded-lg items-center justify-center">
-                    <span className="text-white font-bold text-lg">KG</span>
+                  <div className="hidden w-12 h-12 bg-white rounded-lg items-center justify-center">
+                    <span className="text-gray-900 font-bold text-lg">KG</span>
                   </div>
-                </div>
-                <div>
-                  <h1 className="text-3xl font-bold">Professional Exit Planning System</h1>
-                  <p className="text-gray-300">5-Phase Comprehensive Methodology for Business Transitions</p>
+                  <div>
+                    <h1 className="text-3xl font-bold">Professional Exit Planning System</h1>
+                    <p className="text-gray-300">5-Phase Comprehensive Methodology for Business Transitions</p>
+                  </div>
                 </div>
               </div>
               
