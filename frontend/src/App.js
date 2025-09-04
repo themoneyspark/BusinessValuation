@@ -7,7 +7,6 @@ import Dashboard from "./components/Dashboard";
 import AdminLogin from "./components/AdminLogin";
 import UserLogin from "./components/UserLogin";
 import { Toaster } from "./components/ui/toaster";
-import { userData } from "./data/mock";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null); // Start with no user logged in
