@@ -46,7 +46,7 @@ import { Switch } from '../ui/switch';
 import { Label } from '../ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { useToast } from '../../hooks/use-toast';
-import { mockTeamMembers, mockUsers } from '../../mockData';
+import { mockTeamMembers, mockUsers } from '../../data/adminMockData';
 
 const RoleManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
