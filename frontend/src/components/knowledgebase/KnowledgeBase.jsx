@@ -190,9 +190,10 @@ const KnowledgeBase = ({ userTier }) => {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="library">Resource Library</TabsTrigger>
           <TabsTrigger value="interactive">Interactive Tools</TabsTrigger>
+          <TabsTrigger value="recommendations">AI Recommendations</TabsTrigger>
           <TabsTrigger value="exit-planning">Exit Planning Suite</TabsTrigger>
         </TabsList>
 
@@ -270,11 +271,97 @@ const KnowledgeBase = ({ userTier }) => {
         </TabsContent>
 
         <TabsContent value="interactive">
-          <InteractiveExitPlanning userTier={userTier} />
+          <div className="space-y-6">
+            {/* Interactive Tools Header */}
+            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+              <CardContent className="p-8 text-center">
+                <Calculator className="w-16 h-16 mx-auto mb-4 opacity-80" />
+                <h1 className="text-3xl font-bold mb-4">Interactive Business Analysis Tools</h1>
+                <p className="text-xl opacity-90 mb-6">
+                  Professional-grade calculators and assessment tools for comprehensive business analysis
+                </p>
+                <div className="grid grid-cols-4 gap-6 max-w-2xl mx-auto">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">8</div>
+                    <div className="text-sm opacity-80">Calculators</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">12</div>
+                    <div className="text-sm opacity-80">Assessment Tools</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">100%</div>
+                    <div className="text-sm opacity-80">Personalized</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">0</div>
+                    <div className="text-sm opacity-80">API Dependencies</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Interactive Tools Grid */}
+            <div className="grid grid-cols-2 gap-6">
+              <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300 border-2 border-purple-200 bg-purple-50">
+                <CardContent className="p-8 text-center">
+                  <Brain className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    AI Business Analysis Engine
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Get personalized recommendations based on your specific business profile and exit planning goals
+                  </p>
+                  <Button 
+                    className="bg-purple-600 hover:bg-purple-700"
+                    onClick={() => setActiveTab('recommendations')}
+                  >
+                    Analyze My Business
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300 border-2 border-teal-200 bg-teal-50">
+                <CardContent className="p-8 text-center">
+                  <Calculator className="w-16 h-16 text-teal-600 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Real-Time Value Tracker
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    See how business improvements impact your estimated exit value in real-time with ROI calculations
+                  </p>
+                  <Button 
+                    className="bg-teal-600 hover:bg-teal-700"
+                    onClick={() => setActiveTab('value-tracker')}
+                  >
+                    Track My Business Value
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Original Interactive Tools */}
+            <InteractiveExitPlanning userTier={userTier} />
+          </div>
+        </TabsContent>
+
+        <TabsContent value="recommendations">
+          <PersonalizedRecommendationEngine 
+            userTier={userTier}
+            businessData={userBusinessData}
+            onDataUpdate={handleBusinessDataUpdate}
+          />
+        </TabsContent>
+
+        <TabsContent value="value-tracker">
+          <BusinessValueTracker 
+            userBusinessData={userBusinessData}
+            onDataUpdate={handleBusinessDataUpdate}
+          />
         </TabsContent>
 
         <TabsContent value="exit-planning">
-          <ExitPlanningLibrary userTier={userTier} />
+          <ExitPlanningCenter userTier={userTier} />
         </TabsContent>
       </Tabs>
     </div>
