@@ -499,14 +499,13 @@ const InteractiveExitPlanning = ({ userTier }) => {
               src="/kgob-logo.png"
               alt="KGOB Logo" 
               className="h-12 w-auto object-contain opacity-90"
-              style={{ filter: 'brightness(0) invert(1)' }}
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextElementSibling.style.display = 'flex';
               }}
             />
-            <div className="hidden w-12 h-12 bg-white/20 rounded-lg items-center justify-center">
-              <Target className="w-6 h-6 text-white" />
+            <div className="hidden w-12 h-12 bg-teal-500 rounded-lg items-center justify-center">
+              <span className="text-white font-bold text-lg">KG</span>
             </div>
           </div>
           <h1 className="text-3xl font-bold mb-4">Interactive Exit Planning Center</h1>
