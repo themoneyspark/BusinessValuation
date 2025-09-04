@@ -53,7 +53,7 @@ import {
 } from '../ui/dialog';
 import { Textarea } from '../ui/textarea';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { mockTickets, mockTeamMembers } from '../../mockData';
+import { mockTickets, mockTeamMembers } from '../../data/adminMockData';
 
 const SupportTickets = () => {
   const [searchTerm, setSearchTerm] = useState('');
