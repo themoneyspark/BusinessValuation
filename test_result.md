@@ -427,7 +427,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Final Ask Sara Branding Integration Test"
+    - "Comprehensive Routing & Login System"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
