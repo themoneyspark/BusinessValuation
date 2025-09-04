@@ -8,6 +8,27 @@ export class BusinessIntelligenceEngine {
     this.aiIntegrationEnabled = false; // Future ChatGPT 5 integration flag
   }
 
+  // Initialize valuation models
+  initializeValuationModels() {
+    return {
+      dcf: {
+        name: 'Discounted Cash Flow',
+        description: 'Present value of future cash flows',
+        applicability: ['technology', 'professional-services', 'manufacturing']
+      },
+      multiple: {
+        name: 'Market Multiple',
+        description: 'Valuation based on industry multiples',
+        applicability: ['all']
+      },
+      asset: {
+        name: 'Asset-Based',
+        description: 'Book value of assets minus liabilities',
+        applicability: ['manufacturing', 'retail']
+      }
+    };
+  }
+
   // Main Analysis Function
   async analyzeBusinessForExitPlanning(businessData) {
     const analysis = {
